@@ -12,26 +12,23 @@ const products = {
 
     frameworks: [
       {
-        title: "React",
-        description: "SDK React oficial com suporte a Context API e Hooks",
-        href: "/docs/xauth/react/getting-started",
+        title: "Node.JS",
+        description: "SDK Node.JS oficial",
+        href: "/docs/xauth/nodejs/getting-started",
       },
-      {
-        title: "Next.js",
-        description: "Integração App Router e Middleware",
-        href: "/docs/xauth/nextjs/getting-started",
-      },
+    ],
+  },
+  xvault: {
+    title: "xVault",
 
-      {
-        title: "Python",
-        description: "SDK Python oficial",
-        href: "/docs/xauth/python/quickstart",
-      },
+    description:
+      "Gerenciamento de segredos e variáveis de ambiente para equipes e organizações.",
 
+    frameworks: [
       {
-        title: "Go",
-        description: "Integração Fiber e Gin",
-        href: "/docs/xauth/go/fiber",
+        title: "Node.JS",
+        description: "SDK Node.JS oficial",
+        href: "/docs/xvault/nodejs/getting-started",
       },
     ],
   },
@@ -43,9 +40,7 @@ type Props = {
   }>;
 };
 
-export default async function ProductDocsPage({
-  params,
-}: Props) {
+export default async function ProductDocsPage({ params }: Props) {
   const { product } = await params;
 
   const doc = products[product as keyof typeof products];
@@ -73,9 +68,7 @@ export default async function ProductDocsPage({
                   href={framework.href}
                   className="rounded-2xl border border-border p-5 transition-colors hover:border-primary"
                 >
-                  <h3 className="text-lg font-medium">
-                    {framework.title}
-                  </h3>
+                  <h3 className="text-lg font-medium">{framework.title}</h3>
 
                   <p className="mt-2 text-sm text-muted-foreground">
                     {framework.description}

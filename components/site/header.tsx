@@ -72,7 +72,7 @@ export function Header() {
             size="sm"
             className="h-8 rounded-md bg-foreground text-[13px] font-medium text-background hover:bg-foreground/90"
           >
-            <Link href="/contact">Solicitar acesso</Link>
+            <Link href="/dashboard">Dashboard</Link>
           </Button>
           <button
             type="button"

@@ -19,6 +19,11 @@ export interface DocsNavigationItem {
   href: string;
 }
 
+export type DocNavItem = {
+  title: string;
+  href: string;
+};
+
 interface DocsPageProps {
   eyebrow: string;
   title: React.ReactNode;
@@ -26,6 +31,7 @@ interface DocsPageProps {
 
   sections: DocsSection[];
 
+  sidebar?: DocNavItem[];
   previousPage?: DocsNavigationItem;
   nextPage?: DocsNavigationItem;
 }
@@ -43,11 +49,19 @@ export function DocsPage({
       <AnnouncementBar />
       <Header />
       <main>
-        <PageHero eyebrow={eyebrow} title={
+        <PageHero
+          eyebrow={eyebrow}
+          title={
             <>
-              {title} · <span className="font-serif italic text-primary">Documentação</span>.
+              {title} ·{" "}
+              <span className="font-serif italic text-primary">
+                Documentação
+              </span>
+              .
             </>
-          } description={description} />
+          }
+          description={description}
+        />
 
         <section className="border-b border-border/60 bg-background py-16 md:py-20">
           <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
@@ -88,7 +102,7 @@ export function DocsPage({
                         {(i + 1).toString().padStart(2, "0")} — Seção
                       </p>
                       <h2 className="mt-2 text-2xl font-medium tracking-tight text-foreground md:text-3xl">
-                        {s.title} 
+                        {s.title}
                       </h2>
                       <div className="mt-5 space-y-4 text-sm leading-relaxed text-foreground/85 md:text-base">
                         {s.content}
@@ -100,16 +114,55 @@ export function DocsPage({
             </div>
           </div>
         </section>
-        <div className="mt-20 flex items-center justify-between border-t border-border pt-8">
-          {previousPage ? (
-            <Link href={previousPage.href}>← {previousPage.title}</Link>
-          ) : (
-            <div />
-          )}
+        {/* Minimal Docs Navigation */}
+        <div className="mt-24 border-t border-border/50 pt-6">
+          <div className="grid gap-3 md:grid-cols-2">
+            {previousPage ? (
+              <Link
+                href={previousPage.href}
+                className="group flex items-center justify-between rounded-2xl border border-transparent px-4 py-4 transition-all duration-200 hover:border-border hover:bg-muted/20"
+              >
+                <div className="flex items-center gap-4">
+                  <span className="font-mono text-[11px] text-muted-foreground transition-transform duration-200 group-hover:-translate-x-0.5">
+                    ←
+                  </span>
 
-          {nextPage ? (
-            <Link href={nextPage.href}>{nextPage.title} →</Link>
-          ) : null}
+                  <div>
+                    <p className="font-mono text-[10px] uppercase tracking-[0.18em] text-muted-foreground">
+                      Previous
+                    </p>
+
+                    <h3 className="mt-1 text-sm font-medium text-foreground/90 transition-colors group-hover:text-foreground">
+                      {previousPage.title}
+                    </h3>
+                  </div>
+                </div>
+              </Link>
+            ) : (
+              <div />
+            )}
+
+            {nextPage ? (
+              <Link
+                href={nextPage.href}
+                className="group flex items-center justify-between rounded-2xl border border-transparent px-4 py-4 text-right transition-all duration-200 hover:border-border hover:bg-muted/20"
+              >
+                <div className="ml-auto">
+                  <p className="font-mono text-[10px] uppercase tracking-[0.18em] text-muted-foreground">
+                    Next
+                  </p>
+
+                  <h3 className="mt-1 text-sm font-medium text-foreground/90 transition-colors group-hover:text-foreground">
+                    {nextPage.title}
+                  </h3>
+                </div>
+
+                <span className="ml-4 font-mono text-[11px] text-muted-foreground transition-transform duration-200 group-hover:translate-x-0.5">
+                  →
+                </span>
+              </Link>
+            ) : null}
+          </div>
         </div>
       </main>
       <Footer />

@@ -43,20 +43,10 @@ const principles = [
 
 const team = [
   { name: "Artur Álvaro", role: "CEO & founder", area: "Security Engineering" },
-  { name: "Lucas Tanaka", role: "CTO & Co-founder", area: "Distributed Systems" },
-  { name: "Marina Castro", role: "Head of Cryptography", area: "Applied Crypto" },
-  { name: "Rafael Coutinho", role: "Head of Infrastructure", area: "Platform Engineering" },
-  { name: "Beatriz Almeida", role: "Head of SOC", area: "Threat Intelligence" },
-  { name: "Henrique Vasconcelos", role: "Head of Compliance", area: "GRC" },
 ]
 
 const milestones = [
-  { year: "2021", title: "Fundação", description: "xZark é fundada por veteranos de segurança ofensiva e infraestrutura distribuída." },
-  { year: "2022", title: "xAuth & xShield GA", description: "Primeiros produtos lançados com 30+ clientes enterprise." },
-  { year: "2023", title: "SOC 2 + ISO 27001", description: "Certificações concluídas no primeiro ciclo, sem ressalvas." },
-  { year: "2024", title: "Expansão global", description: "Operação em 18 regiões com soberania jurisdicional total." },
-  { year: "2025", title: "xVault & xCloud", description: "Vault e cloud privada lançados; HSM FIPS 140-3 Level 3 certificado." },
-  { year: "2026", title: "xGate Preview", description: "Service mesh global e gateway zero-trust em preview controlado." },
+  { year: "2026", title: "Fundação", description: "xZark é fundada por veteranos de segurança ofensiva e infraestrutura distribuída." },
 ]
 
 /** Página Sobre — missão, princípios, time e timeline */

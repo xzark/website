@@ -1,33 +1,35 @@
-import type { Metadata } from "next"
-import { notFound } from "next/navigation"
-import Link from "next/link"
-import { ArrowLeft, ArrowUpRight, Check } from "lucide-react"
-import { AnnouncementBar } from "@/components/site/announcement-bar"
-import { Header } from "@/components/site/header"
-import { Footer } from "@/components/site/footer"
-import { GridBackground } from "@/components/site/grid-background"
-import { CTA } from "@/components/landing/cta"
-import { Button } from "@/components/ui/button"
-import { products, type ProductSlug } from "@/lib/site-config"
+import type { Metadata } from "next";
+import { notFound } from "next/navigation";
+import Link from "next/link";
+import { ArrowLeft, ArrowUpRight, Check } from "lucide-react";
+import { AnnouncementBar } from "@/components/site/announcement-bar";
+import { Header } from "@/components/site/header";
+import { Footer } from "@/components/site/footer";
+import { GridBackground } from "@/components/site/grid-background";
+import { CTA } from "@/components/landing/cta";
+import { Button } from "@/components/ui/button";
+import { products, type ProductSlug } from "@/lib/site-config";
 
 interface ProductPageProps {
-  params: Promise<{ slug: string }>
+  params: Promise<{ slug: string }>;
 }
 
 /** Gera rotas estáticas para todos os produtos */
 export function generateStaticParams() {
-  return products.map((p) => ({ slug: p.slug }))
+  return products.map((p) => ({ slug: p.slug }));
 }
 
 /** Metadata dinâmica por produto */
-export async function generateMetadata({ params }: ProductPageProps): Promise<Metadata> {
-  const { slug } = await params
-  const product = products.find((p) => p.slug === (slug as ProductSlug))
-  if (!product) return { title: "Produto não encontrado" }
+export async function generateMetadata({
+  params,
+}: ProductPageProps): Promise<Metadata> {
+  const { slug } = await params;
+  const product = products.find((p) => p.slug === (slug as ProductSlug));
+  if (!product) return { title: "Produto não encontrado" };
   return {
     title: `${product.name} — ${product.tagline}`,
     description: product.description,
-  }
+  };
 }
 
 /**
@@ -35,14 +37,14 @@ export async function generateMetadata({ params }: ProductPageProps): Promise<Me
  * Slug dinâmico — renderiza informações completas, features e métricas.
  */
 export default async function ProductPage({ params }: ProductPageProps) {
-  const { slug } = await params
-  const product = products.find((p) => p.slug === (slug as ProductSlug))
-  if (!product) notFound()
+  const { slug } = await params;
+  const product = products.find((p) => p.slug === (slug as ProductSlug));
+  if (!product) notFound();
 
-  const Icon = product.icon
-  const idx = products.findIndex((p) => p.slug === product.slug)
-  const next = products[(idx + 1) % products.length]
-  const prev = products[(idx - 1 + products.length) % products.length]
+  const Icon = product.icon;
+  const idx = products.findIndex((p) => p.slug === product.slug);
+  const next = products[(idx + 1) % products.length];
+  const prev = products[(idx - 1 + products.length) % products.length];
 
   return (
     <>
@@ -112,8 +114,14 @@ export default async function ProductPage({ params }: ProductPageProps) {
                     size="lg"
                     className="h-11 rounded-md bg-foreground px-5 text-sm font-medium text-background hover:bg-foreground/90"
                   >
-                    <Link href="/contact">
-                      Solicitar demo
+                    <Link
+                      href={
+                        product.button?.link
+                          ? product.button.link
+                          : "/contact-sales"
+                      }
+                    >
+                      {product.button?.text || "Solicitar demo"}
                       <ArrowUpRight className="ml-1 size-4" />
                     </Link>
                   </Button>
@@ -139,9 +147,16 @@ export default async function ProductPage({ params }: ProductPageProps) {
                     </div>
                     <div className="divide-y divide-border/60">
                       {product.metrics.map((m) => (
-                        <div key={m.label} className="flex items-baseline justify-between px-5 py-4">
-                          <span className="text-sm text-muted-foreground">{m.label}</span>
-                          <span className="font-sans text-base tabular-nums">{m.value}</span>
+                        <div
+                          key={m.label}
+                          className="flex items-baseline justify-between px-5 py-4"
+                        >
+                          <span className="text-sm text-muted-foreground">
+                            {m.label}
+                          </span>
+                          <span className="font-sans text-base tabular-nums">
+                            {m.value}
+                          </span>
                         </div>
                       ))}
                     </div>
@@ -158,16 +173,22 @@ export default async function ProductPage({ params }: ProductPageProps) {
             <div className="grid gap-10 md:grid-cols-12">
               <div className="md:col-span-4">
                 <div className="inline-flex items-center gap-2">
-                  <span aria-hidden className="size-1 rounded-full bg-primary" />
+                  <span
+                    aria-hidden
+                    className="size-1 rounded-full bg-primary"
+                  />
                   <span className="font-mono text-[10.5px] uppercase tracking-[0.2em] text-muted-foreground">
                     Capacidades
                   </span>
                 </div>
                 <h2 className="mt-4 text-balance text-3xl font-medium leading-tight tracking-tight md:text-4xl">
-                  Tudo que <span className="font-serif italic">{product.name}</span> entrega.
+                  Tudo que{" "}
+                  <span className="font-serif italic">{product.name}</span>{" "}
+                  entrega.
                 </h2>
                 <p className="mt-4 text-sm leading-relaxed text-muted-foreground">
-                  Recursos production-grade testados em escala global, com SLAs contratuais e suporte de engenharia 24/7.
+                  Recursos production-grade testados em escala global, com SLAs
+                  contratuais e suporte de engenharia 24/7.
                 </p>
               </div>
 
@@ -190,6 +211,104 @@ export default async function ProductPage({ params }: ProductPageProps) {
             </div>
           </div>
         </section>
+
+        {/* Pricing dinâmico baseado no product.pricing */}
+        {product.pricing && (
+          <section
+            id="pricing"
+            className="border-b border-border/60 bg-background py-20"
+          >
+            <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+              <div className="max-w-2xl">
+                <div className="inline-flex items-center gap-2">
+                  <span
+                    aria-hidden
+                    className="size-1 rounded-full bg-primary"
+                  />
+                  <span className="font-mono text-[10.5px] uppercase tracking-[0.2em] text-muted-foreground">
+                    Pricing
+                  </span>
+                </div>
+
+                <h2 className="mt-4 text-balance text-3xl font-medium leading-tight tracking-tight md:text-4xl">
+                  Planos para qualquer escala.
+                </h2>
+
+                <p className="mt-4 text-sm leading-relaxed text-muted-foreground">
+                  Escolha o plano ideal para seu ambiente e escale conforme seu
+                  produto cresce.
+                </p>
+              </div>
+
+              <div className="mt-12 grid gap-6 lg:grid-cols-3">
+                {product.pricing.map((plan) => (
+                  <div
+                    key={plan.name}
+                    className={
+                      plan.highlight
+                        ? "relative rounded-2xl border border-primary/40 bg-card p-6 shadow-2xl shadow-primary/10"
+                        : "rounded-2xl border border-border/70 bg-card/60 p-6 backdrop-blur"
+                    }
+                  >
+                    {/* Badge */}
+                    {plan.badge && (
+                      <div
+                        className={
+                          plan.highlight
+                            ? "absolute right-4 top-4 rounded-full bg-primary px-2 py-1 font-mono text-[10px] uppercase tracking-[0.18em] text-primary-foreground"
+                            : "rounded-full border border-border px-2 py-1 font-mono text-[10px] uppercase tracking-[0.18em] text-muted-foreground inline-flex"
+                        }
+                      >
+                        {plan.badge}
+                      </div>
+                    )}
+
+                    {/* Header */}
+                    <div>
+                      <h3 className="text-xl font-medium">{plan.name}</h3>
+
+                      <p className="mt-1 text-sm text-muted-foreground">
+                        {plan.description}
+                      </p>
+                    </div>
+
+                    {/* Price */}
+                    <div className="mt-8">
+                      <span className="text-4xl font-semibold">
+                        {plan.price}
+                      </span>
+                    </div>
+
+                    {/* Features */}
+                    <ul className="mt-8 space-y-4">
+                      {plan.features.map((feature) => (
+                        <li key={feature} className="flex items-start gap-3">
+                          <Check className="mt-0.5 size-4 shrink-0 text-primary" />
+
+                          <span className="text-sm leading-relaxed text-foreground/90">
+                            {feature}
+                          </span>
+                        </li>
+                      ))}
+                    </ul>
+
+                    {/* CTA */}
+                    <Button
+                      className={
+                        plan.highlight
+                          ? "mt-8 w-full rounded-md bg-primary text-primary-foreground hover:bg-primary/90 cursor-pointer"
+                          : "mt-8 w-full rounded-md cursor-pointer"
+                      }
+                      variant={plan.highlight ? "default" : "outline"}
+                    >
+                      {plan.cta}
+                    </Button>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </section>
+        )}
 
         {/* Navegação entre produtos */}
         <section className="border-b border-border/60 bg-background py-12">
@@ -227,5 +346,5 @@ export default async function ProductPage({ params }: ProductPageProps) {
       </main>
       <Footer />
     </>
-  )
+  );
 }

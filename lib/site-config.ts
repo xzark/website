@@ -35,7 +35,22 @@ export const siteConfig = {
   defaultLocale: "pt-BR" as const,
 }
 
-export type ProductSlug = "xauth" | "xshield" | "xvault" | "xcloud" | "xgate"
+export type ProductSlug =
+  | "xauth"
+  | "xshield"
+  | "xvault"
+  | "xcloud"
+  | "xgate"
+
+export interface PricingPlan {
+  name: string
+  price: string
+  description: string
+  highlight?: boolean
+  badge?: string
+  features: string[]
+  cta: string
+}
 
 export interface Product {
   slug: ProductSlug
@@ -46,7 +61,12 @@ export interface Product {
   icon: LucideIcon
   features: string[]
   metrics: { label: string; value: string }[]
+  pricing?: PricingPlan[]
   status: "GA" | "Beta" | "Preview"
+  button?: {
+    text: string
+    link?: string
+  }
 }
 
 /** Catálogo de produtos xZark */
@@ -55,115 +75,422 @@ export const products: Product[] = [
     slug: "xauth",
     name: "xAuth",
     category: "Identity",
-    tagline: "Autenticação zero-trust de nova geração",
+    tagline: "Autenticação zero-trust moderna para aplicações escaláveis",
     description:
-      "Autenticação multifator, SSO, passkeys e identidade descentralizada. Compatível com OIDC, SAML 2.0 e WebAuthn.",
+      "Infraestrutura completa de autenticação com MFA, passkeys, SSO, sessões inteligentes e segurança enterprise.",
+
     icon: Fingerprint,
+
     features: [
       "Passkeys e WebAuthn nativos",
-      "MFA adaptativo com risk scoring",
-      "SSO empresarial (SAML, OIDC)",
-      "Identidade federada e descentralizada",
-      "Audit log imutável",
-      "SDKs em 12 linguagens",
+      "MFA adaptativo com análise de risco",
+      "SSO empresarial (OIDC/SAML)",
+      "Sessões seguras com rotação automática",
+      "Audit logs avançados",
+      "SDKs modernos e type-safe",
     ],
+
     metrics: [
       { label: "Latência média", value: "8ms" },
-      { label: "Uptime SLA", value: "99.99%" },
-      { label: "Compliance", value: "SOC 2 / ISO 27001" },
+      { label: "Uptime", value: "99.99%" },
+      { label: "SDKs", value: "12 linguagens" },
     ],
+
+    button: {
+      text: "Planos e preços",
+      link: "#pricing",
+    },
+
+    pricing: [
+      {
+        name: "Free",
+        price: "R$0",
+        description: "Ideal para MVPs e projetos pessoais.",
+        badge: "Starter",
+
+        cta: "Começar grátis",
+
+        features: [
+          "Até 10.000 usuários ativos",
+          "JWT e login social",
+          "MFA básico",
+          "SDKs oficiais",
+          "Sessões seguras",
+          "Rate limiting",
+        ],
+      },
+
+      {
+        name: "Pro",
+        price: "R$79/mês",
+
+        description: "Escala segura para startups e SaaS modernos.",
+
+        badge: "Popular",
+
+        highlight: true,
+
+        cta: "Fazer upgrade",
+
+        features: [
+          "Até 100.000 usuários ativos",
+          "Passkeys e WebAuthn",
+          "SSO OIDC/SAML",
+          "Risk scoring avançado",
+          "Logs e auditoria",
+          "Organizações e RBAC",
+          "Webhooks",
+          "Analytics de sessões",
+          "Suporte prioritário",
+        ],
+      },
+
+      {
+        name: "Enterprise",
+
+        price: "Sob consulta",
+
+        description: "Infraestrutura corporativa crítica.",
+
+        badge: "Custom",
+
+        cta: "Falar com vendas",
+
+        features: [
+          "Usuários ilimitados",
+          "Cluster dedicado",
+          "Compliance avançado",
+          "SLA 24/7",
+          "Deploy híbrido/on-premise",
+          "SIEM integrations",
+          "Threat intelligence",
+          "Engenheiro dedicado",
+        ],
+      },
+    ],
+
     status: "GA",
   },
+
   {
     slug: "xshield",
+
     name: "xShield",
+
     category: "Threat Protection",
-    tagline: "Proteção contínua contra ameaças avançadas",
+
+    tagline: "Proteção contínua contra ataques e ameaças modernas",
+
     description:
-      "WAF de borda, mitigação DDoS L3-L7 e detecção comportamental baseada em ML. Bloqueia em microsegundos.",
+      "Firewall inteligente, mitigação DDoS e proteção comportamental em tempo real.",
+
     icon: Shield,
+
     features: [
-      "WAF programável com regras customizadas",
-      "Mitigação DDoS até 10 Tbps",
-      "Bot management com fingerprinting",
-      "Rate limiting distribuído",
-      "Threat intelligence em tempo real",
-      "Modo aprendizado automático",
+      "WAF programável",
+      "Mitigação DDoS distribuída",
+      "Bot management",
+      "Threat intelligence",
+      "Rate limiting avançado",
+      "Detecção comportamental",
     ],
+
     metrics: [
-      { label: "Bloqueio médio", value: "< 1ms" },
+      { label: "Mitigação", value: "< 1ms" },
       { label: "Capacidade", value: "10 Tbps" },
-      { label: "Falsos positivos", value: "< 0.01%" },
+      { label: "Precisão", value: "99.99%" },
     ],
+
     status: "GA",
   },
+
   {
     slug: "xvault",
+
     name: "xVault",
+
     category: "Secrets & Encryption",
-    tagline: "Cofre criptográfico de nível militar",
+
+    tagline: "Gerenciamento seguro de segredos e criptografia avançada",
+
     description:
-      "Gerenciamento de segredos, chaves e certificados com criptografia ponta a ponta e HSM dedicado.",
+      "Cofre criptográfico moderno para segredos, tokens, certificados e chaves.",
+
     icon: KeyRound,
+
     features: [
-      "Criptografia AES-256 + ChaCha20",
-      "HSM FIPS 140-3 Level 3",
-      "Rotação automática de segredos",
-      "Envelope encryption",
+      "AES-256 e ChaCha20",
+      "Rotação automática",
+      "HSM integrado",
       "Audit trail criptográfico",
-      "Compliance HIPAA, PCI-DSS",
+      "Envelope encryption",
+      "API segura",
     ],
+
     metrics: [
       { label: "Throughput", value: "50k ops/s" },
-      { label: "Certificação", value: "FIPS 140-3" },
+      { label: "Criptografia", value: "FIPS 140-3" },
       { label: "Regiões", value: "32 globais" },
     ],
+
+    pricing: [
+      {
+        name: "Free",
+
+        price: "R$0",
+
+        description: "Cofre básico para desenvolvimento.",
+
+        badge: "Starter",
+
+        cta: "Usar grátis",
+
+        features: [
+          "100 segredos",
+          "Criptografia padrão",
+          "API básica",
+          "Logs simples",
+        ],
+      },
+
+      {
+        name: "Pro",
+
+        price: "R$99/mês",
+
+        description: "Proteção robusta para aplicações modernas.",
+
+        badge: "Popular",
+
+        highlight: true,
+
+        cta: "Upgrade premium",
+
+        features: [
+          "Rotação automática",
+          "Audit logs",
+          "HSM integrado",
+          "Backups seguros",
+          "Segredos ilimitados",
+        ],
+      },
+
+      {
+        name: "Enterprise",
+
+        price: "Sob consulta",
+
+        description: "Infraestrutura criptográfica corporativa.",
+
+        badge: "Custom",
+
+        cta: "Falar com especialista",
+
+        features: [
+          "HSM dedicado",
+          "Compliance completo",
+          "Multi-região",
+          "SLA corporativo",
+          "Infraestrutura isolada",
+        ],
+      },
+    ],
+
+    button: {
+      text: "Planos e preços",
+      link: "#pricing",
+    },
+
     status: "GA",
   },
+
   {
     slug: "xcloud",
+
     name: "xCloud",
+
     category: "Infrastructure",
-    tagline: "Cloud privada e soberana, sob seu controle",
+
+    tagline: "Cloud privada moderna com soberania de dados",
+
     description:
-      "Infraestrutura sob demanda com isolamento total, soberania de dados e conformidade regional.",
+      "Infraestrutura segura, escalável e preparada para workloads críticos.",
+
     icon: Cloud,
+
     features: [
       "Isolamento por hardware",
-      "Soberania de dados regional",
-      "BYOK (Bring Your Own Key)",
-      "Network segmentation nativa",
-      "Backup imutável geo-redundante",
-      "Compliance LGPD, GDPR, CCPA",
+      "Backups imutáveis",
+      "Compliance LGPD/GDPR",
+      "Segmentação de rede",
+      "Geo redundância",
+      "BYOK",
     ],
+
     metrics: [
-      { label: "Datacenters", value: "32 regiões" },
-      { label: "Isolamento", value: "Hardware-level" },
+      { label: "Regiões", value: "32 globais" },
       { label: "Disponibilidade", value: "99.999%" },
+      { label: "Isolamento", value: "Hardware-level" },
     ],
+
+    pricing: [
+      {
+        name: "Free",
+
+        price: "R$0",
+
+        description: "Sandbox para testes e desenvolvimento.",
+
+        badge: "Starter",
+
+        cta: "Criar ambiente",
+
+        features: [
+          "1 instância",
+          "Recursos limitados",
+          "Storage básico",
+          "Deploy simples",
+        ],
+      },
+
+      {
+        name: "Pro",
+
+        price: "R$297/mês",
+
+        description: "Infraestrutura privada escalável.",
+
+        badge: "Popular",
+
+        highlight: true,
+
+        cta: "Solicitar cloud",
+
+        features: [
+          "Cluster privado",
+          "Backups automáticos",
+          "Rede dedicada",
+          "Compliance regional",
+          "Monitoramento avançado",
+        ],
+      },
+
+      {
+        name: "Enterprise",
+
+        price: "Sob consulta",
+
+        description: "Cloud soberana corporativa.",
+
+        badge: "Custom",
+
+        cta: "Arquitetura dedicada",
+
+        features: [
+          "Datacenter dedicado",
+          "Deploy híbrido",
+          "Operação personalizada",
+          "SLA máximo",
+          "Infraestrutura isolada",
+        ],
+      },
+    ],
+
     status: "Beta",
   },
+
   {
     slug: "xgate",
+
     name: "xGate",
+
     category: "Network",
-    tagline: "Gateway seguro com inspeção zero-trust",
+
+    tagline: "Gateway seguro com arquitetura zero-trust",
+
     description:
-      "API gateway, mesh service e proxy reverso com mTLS, políticas declarativas e observabilidade completa.",
+      "API gateway e service mesh moderno com observabilidade completa.",
+
     icon: Network,
+
     features: [
       "mTLS automático",
-      "Políticas declarativas (OPA)",
-      "Service mesh nativo",
-      "Rate limiting por consumidor",
       "Tracing distribuído",
-      "Edge computing global",
+      "Políticas declarativas",
+      "Service mesh",
+      "Edge global",
+      "Rate limiting",
     ],
+
     metrics: [
       { label: "Latência p99", value: "12ms" },
       { label: "Throughput", value: "1M req/s" },
       { label: "PoPs", value: "240+" },
     ],
+
+    pricing: [
+      {
+        name: "Free",
+
+        price: "R$0",
+
+        description: "Gateway básico para APIs pequenas.",
+
+        badge: "Starter",
+
+        cta: "Começar",
+
+        features: [
+          "10k requests/dia",
+          "mTLS básico",
+          "Dashboard simples",
+          "Logs básicos",
+        ],
+      },
+
+      {
+        name: "Pro",
+
+        price: "R$129/mês",
+
+        description: "Alta performance para aplicações modernas.",
+
+        badge: "Popular",
+
+        highlight: true,
+
+        cta: "Ativar premium",
+
+        features: [
+          "1M requests/s",
+          "Observabilidade completa",
+          "Rate limiting avançado",
+          "Mesh distribuído",
+          "Analytics avançado",
+        ],
+      },
+
+      {
+        name: "Enterprise",
+
+        price: "Sob consulta",
+
+        description: "Rede corporativa global.",
+
+        badge: "Custom",
+
+        cta: "Contato comercial",
+
+        features: [
+          "PoPs dedicados",
+          "Edge privado",
+          "Arquitetura customizada",
+          "SLA enterprise",
+          "Suporte dedicado",
+        ],
+      },
+    ],
+
     status: "Preview",
   },
 ]
