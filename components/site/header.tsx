@@ -10,7 +10,7 @@ import { Menu, Search, X } from "lucide-react"
 import { Logo } from "./logo"
 import { mainNav } from "@/lib/site-config"
 import { cn } from "@/lib/utils"
-import { Button } from "@/components/ui/button"
+import { HeaderAuth } from "@/components/auth/header-auth"
 
 export function Header() {
   const [scrolled, setScrolled] = useState(false)
@@ -67,13 +67,7 @@ export function Header() {
           >
             Contato
           </Link>
-          <Button
-            asChild
-            size="sm"
-            className="h-8 rounded-md bg-foreground text-[13px] font-medium text-background hover:bg-foreground/90"
-          >
-            <Link href="/dashboard">Dashboard</Link>
-          </Button>
+          <HeaderAuth />
           <button
             type="button"
             aria-label={mobileOpen ? "Fechar menu" : "Abrir menu"}

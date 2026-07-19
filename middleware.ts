@@ -43,7 +43,7 @@ const HONEYPOT_PATTERNS: RegExp[] = [
 const ALLOWLIST: RegExp[] = [/^\/\.well-known\/security\.txt$/i]
 
 /** Rotas que exigem sessão autenticada no frontend. */
-const PROTECTED_PREFIXES = ["/admian"]
+const PROTECTED_PREFIXES = ["/admin", "/dashboard"]
 
 /** Gera um identificador único de requisição (ULID-like, sem dependência). */
 function generateRequestId(): string {
@@ -86,8 +86,10 @@ export function middleware(req: NextRequest) {
   // 2. Proteção de rota — admin exige sessão.
   const isProtected = PROTECTED_PREFIXES.some((p) => pathname.startsWith(p))
   if (isProtected && !hasSessionCookie(req)) {
+    // Gate de borda barato: apenas presença de cookie. A verificação de
+    // assinatura e papel ocorre nos Server Components (lib/auth).
     const url = req.nextUrl.clone()
-    url.pathname = "/unauthorized"
+    url.pathname = "/login"
     url.searchParams.set("from", pathname)
     const res = NextResponse.redirect(url)
     res.headers.set("x-request-id", requestId)
