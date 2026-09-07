@@ -33,6 +33,7 @@ const cols = [
       { label: "Segurança", href: "/security" },
       { label: "FAQ", href: "/faq" },
       { label: "Contato", href: "/contact" },
+      { label: "Careers — Join xZark", href: "/careers" },
     ],
   },
   {

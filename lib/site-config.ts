@@ -136,6 +136,7 @@ export const mainNav = [
   { label: "Docs", href: "/docs" },
   { label: "Segurança", href: "/security" },
   { label: "Sobre", href: "/about" },
+  { label: "Careers", href: "/careers" },
 ] as const
 
 export const announcements = [
