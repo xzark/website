@@ -7,7 +7,7 @@
  */
 import Link from "next/link"
 import { motion } from "framer-motion"
-import { ArrowUpRight, ShieldCheck } from "lucide-react"
+import { ArrowUpRight } from "lucide-react"
 import { GridBackground } from "@/components/site/grid-background"
 import { Button } from "@/components/ui/button"
 
@@ -27,7 +27,7 @@ export function Hero() {
           <div className="inline-flex items-center gap-2 rounded-full border border-border/80 bg-card/60 px-3 py-1 backdrop-blur">
             <span aria-hidden className="size-1.5 animate-pulse-soft rounded-full bg-success" />
             <span className="font-mono text-[10.5px] uppercase tracking-[0.2em] text-muted-foreground">
-              Plataforma 12.0 — Outono / Inverno 2026
+              Conceitos de segurança — em evolução
             </span>
           </div>
         </motion.div>
@@ -41,7 +41,7 @@ export function Hero() {
         >
           <div>
             <p className="font-mono text-[10.5px] uppercase tracking-[0.2em] text-primary">
-              Edição enterprise — disponibilidade global
+              Infraestrutura pública — visão técnica
             </p>
             <p className="mt-2 max-w-md text-sm leading-relaxed text-muted-foreground">
               Infraestrutura zero-trust com mTLS nativo, isolamento por hardware e auditoria criptográfica imutável.
@@ -49,10 +49,10 @@ export function Hero() {
           </div>
           <div className="md:text-right">
             <p className="font-mono text-[10.5px] uppercase tracking-[0.2em] text-muted-foreground">
-              Build estável
+              Status
             </p>
             <p className="mt-2 font-mono text-[11px] text-muted-foreground">
-              v12.4.1 &nbsp;·&nbsp; 2026
+              Pesquisa e desenvolvimento
             </p>
           </div>
         </motion.div>
@@ -105,10 +105,6 @@ export function Hero() {
           >
             <Link href="/products">Explorar produtos</Link>
           </Button>
-          <div className="ml-0 flex items-center gap-2 text-xs text-muted-foreground sm:ml-4">
-            <ShieldCheck className="size-3.5 text-success" />
-            <span>SOC 2 · ISO 27001 · LGPD</span>
-          </div>
         </motion.div>
 
         {/* Preview de terminal flutuante */}
@@ -164,30 +160,19 @@ function TerminalPreview() {
               <span className="text-success">ok</span>
             </Line>
             <Line type="info">
-              <span className="text-primary">›</span> Issuing mTLS certificates …{" "}
-              <span className="text-success">ok</span>
+              <span className="text-primary">›</span> Applying explicit security policies …{" "}
+              <span className="text-success">concept</span>
             </Line>
             <Line type="info">
-              <span className="text-primary">›</span> Rotating secrets via xVault …{" "}
-              <span className="text-success">ok</span>
+              <span className="text-primary">›</span> Reviewing identity boundaries …{" "}
+              <span className="text-success">concept</span>
             </Line>
             <Line type="info">
-              <span className="text-primary">›</span> Provisioning xShield rules (84) …{" "}
-              <span className="text-success">ok</span>
-            </Line>
-            <Line type="info">
-              <span className="text-primary">›</span> Deploying to 32 regions …{" "}
-              <span className="text-success">ok</span>
-            </Line>
-            <Line type="success">
-              <span className="text-success">✓</span> Deployment complete in{" "}
-              <span className="text-foreground">14.2s</span>
+              <span className="text-primary">›</span> Mapping observable events …{" "}
+              <span className="text-success">concept</span>
             </Line>
             <Line type="muted">
-              audit:{" "}
-              <span className="text-primary">
-                xzark.co/audit/9f3a2b8e-71c4-4d9a
-              </span>
+              status: <span className="text-primary">research and development</span>
             </Line>
             <Line prompt user="ops@xzark" host="prod">
               <span className="text-foreground">_</span>
@@ -195,16 +180,14 @@ function TerminalPreview() {
             </Line>
           </div>
 
-          {/* Painel lateral de métricas */}
           <aside className="hidden border-l border-border/60 bg-background/30 p-5 md:block">
             <p className="font-mono text-[10.5px] uppercase tracking-[0.2em] text-muted-foreground">
-              Live Telemetry
+              Conceito de operação
             </p>
-            <div className="mt-4 space-y-4">
-              <Metric label="Threats blocked" value="1.2M" trend="+8.4%" />
-              <Metric label="Avg latency" value="7.8ms" trend="-2.1%" good />
-              <Metric label="Active sessions" value="84.2k" trend="+1.9%" />
-              <Metric label="Uptime" value="99.999%" trend="30d" good />
+            <div className="mt-4 space-y-4 text-sm leading-relaxed text-muted-foreground">
+              <p>Políticas explícitas.</p>
+              <p>Identidade em cada camada.</p>
+              <p>Eventos rastreáveis.</p>
             </div>
           </aside>
         </div>
@@ -253,34 +236,3 @@ function Line({
   )
 }
 
-function Metric({
-  label,
-  value,
-  trend,
-  good,
-}: {
-  label: string
-  value: string
-  trend: string
-  good?: boolean
-}) {
-  return (
-    <div>
-      <p className="font-mono text-[10.5px] uppercase tracking-[0.18em] text-muted-foreground">
-        {label}
-      </p>
-      <div className="mt-1 flex items-baseline gap-2">
-        <span className="font-mono text-base text-foreground">{value}</span>
-        <span
-          className={
-            good
-              ? "font-mono text-[11px] text-success"
-              : "font-mono text-[11px] text-muted-foreground"
-          }
-        >
-          {trend}
-        </span>
-      </div>
-    </div>
-  )
-}

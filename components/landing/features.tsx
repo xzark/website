@@ -23,7 +23,7 @@ const features = [
     icon: Cpu,
     title: "Hardware isolado",
     description:
-      "Workloads sensíveis rodam em enclaves dedicados com atestação remota. Nem mesmo nossos engenheiros têm acesso aos seus dados.",
+      "Conceito de isolamento para workloads sensíveis, com fronteiras de acesso explícitas e verificáveis.",
   },
   {
     icon: EyeOff,
@@ -35,7 +35,7 @@ const features = [
     icon: Globe,
     title: "Soberania regional",
     description:
-      "32 regiões com isolamento jurisdicional total. Dados brasileiros permanecem no Brasil; europeus, na UE — sem exceções.",
+      "Conceito de políticas regionais para ajudar organizações a definir onde seus dados podem operar.",
   },
   {
     icon: TerminalSquare,

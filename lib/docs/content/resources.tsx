@@ -24,7 +24,7 @@ const faqItems: { q: string; a: React.ReactNode }[] = [
   },
   {
     q: "A plataforma é compatível com requisitos de conformidade?",
-    a: "Sim. A xZark é compatível com LGPD, GDPR e SOC 2 Type II, com audit logs imutáveis para suportar auditorias.",
+    a: "Os produtos são conceitos em desenvolvimento. Requisitos de conformidade e controles específicos devem ser avaliados em uma etapa técnica futura.",
   },
 ]
 

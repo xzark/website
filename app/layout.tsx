@@ -1,7 +1,6 @@
 import type { Metadata, Viewport } from "next"
 import { Geist, Geist_Mono, Instrument_Serif } from "next/font/google"
 import { Analytics } from "@vercel/analytics/next"
-import { Toaster } from "@/components/ui/sonner"
 import "./globals.css"
 
 // Fontes — Geist Sans (UI), Geist Mono (código/acentos), Instrument Serif (acentos editoriais)
@@ -126,7 +125,6 @@ export default function RootLayout({
     >
       <body className="font-sans antialiased min-h-screen bg-background text-foreground selection:bg-primary/30">
         {children}
-        <Toaster theme="dark" position="top-center" />
         {process.env.NODE_ENV === "production" && <Analytics />}
       </body>
     </html>

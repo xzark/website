@@ -123,25 +123,10 @@ function ProductCard({
         )}
 
         <div className="mt-auto pt-8">
-          {featured ? (
-            <div className="grid grid-cols-3 gap-6 border-t border-border/60 pt-6">
-              {product.metrics.map((m) => (
-                <div key={m.label}>
-                  <p className="font-mono text-[10px] uppercase tracking-[0.18em] text-muted-foreground">
-                    {m.label}
-                  </p>
-                  <p className="mt-1 font-sans text-lg tabular-nums text-foreground">
-                    {m.value}
-                  </p>
-                </div>
-              ))}
-            </div>
-          ) : (
-            <div className="flex items-center gap-1 text-xs text-muted-foreground transition-colors group-hover:text-primary">
-              Saiba mais
-              <ArrowUpRight className="size-3.5" />
-            </div>
-          )}
+          <div className="flex items-center gap-1 text-xs text-muted-foreground transition-colors group-hover:text-primary">
+            Saiba mais
+            <ArrowUpRight className="size-3.5" />
+          </div>
         </div>
       </div>
     </Link>

@@ -18,28 +18,28 @@ const channels = [
     title: "Comercial",
     description: "Avaliação técnica, POCs e contratação enterprise.",
     contact: "sales@xzark.co",
-    responseTime: "< 24h",
+    responseTime: "Canal público",
   },
   {
     icon: Shield,
     title: "Segurança",
     description: "Reporte de vulnerabilidades e bug bounty (PGP disponível).",
     contact: "security@xzark.co",
-    responseTime: "< 4h",
+    responseTime: "Canal público",
   },
   {
     icon: Phone,
     title: "Suporte 24/7",
     description: "Incidentes P1/P2 para clientes ativos com SLA enterprise.",
     contact: "+55 11 4040-XZRK",
-    responseTime: "< 15min P1",
+    responseTime: "Canal público",
   },
   {
     icon: Mail,
     title: "Imprensa",
     description: "Releases, entrevistas e materiais de mídia.",
     contact: "press@xzark.co",
-    responseTime: "< 48h",
+    responseTime: "Canal público",
   },
 ]
 
@@ -117,24 +117,6 @@ export default function ContactPage() {
                   })}
                 </div>
 
-                {/* Endereço */}
-                <div className="mt-8 rounded-lg border border-border/80 bg-card p-5">
-                  <h3 className="font-mono text-[10.5px] uppercase tracking-[0.2em] text-muted-foreground">
-                    Sede
-                  </h3>
-                  <p className="mt-3 text-sm leading-relaxed text-foreground">
-                    Av. Brigadeiro Faria Lima, 4440
-                    <br />
-                    14º andar, Itaim Bibi
-                    <br />
-                    Salvador — BA, 04538-132
-                    <br />
-                    Brasil
-                  </p>
-                  <p className="mt-4 font-mono text-[10.5px] uppercase tracking-[0.18em] text-muted-foreground">
-                    Operação 24/7 · 32 regiões globais
-                  </p>
-                </div>
               </div>
             </div>
           </div>

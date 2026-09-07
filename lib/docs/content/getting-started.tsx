@@ -92,7 +92,7 @@ export const introducao: DocContent = {
               "SDKs type-safe e idiomáticos",
               "Auditoria e rastreabilidade completas",
               "Baixa latência em escala global",
-              "Compatível com LGPD, GDPR e SOC 2",
+              "Conceitos orientados a privacidade e segurança",
             ]}
           />
         </Prose>
