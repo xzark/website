@@ -25,7 +25,7 @@ export function ProductsGrid() {
                 Cinco produtos. <span className="font-serif italic text-primary">Uma</span> infraestrutura.
               </>
             }
-            description="Cada produto resolve uma camada da pilha de segurança. Juntos, formam uma plataforma zero-trust completa, com SLAs unificados e auditoria centralizada."
+            description="Cada produto explora uma camada da pilha de segurança. Juntos, apresentam uma visão modular de infraestrutura zero-trust."
           />
           <Link
             href="/products"

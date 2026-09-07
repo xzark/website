@@ -1,3 +1,4 @@
+import Link from "next/link"
 import {
   Callout,
   CardGrid,
@@ -169,9 +170,9 @@ console.log(secret) // { key: "DATABASE_URL", version: 1 }`}
           </Steps>
           <Callout variant="success" title="Pronto!">
             Seu segredo foi criptografado e versionado automaticamente. Veja{" "}
-            <a className="text-primary underline-offset-4 hover:underline" href="/docs/xvault/segredos">
+            <Link className="text-primary underline-offset-4 hover:underline" href="/docs/xvault/segredos">
               Gerenciar segredos
-            </a>{" "}
+            </Link>{" "}
             para as operações completas de CRUD.
           </Callout>
         </Prose>

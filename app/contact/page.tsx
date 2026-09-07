@@ -29,7 +29,7 @@ const channels = [
   },
   {
     icon: Phone,
-    title: "Suporte 24/7",
+    title: "Suporte técnico",
     description: "Incidentes P1/P2 para clientes ativos com SLA enterprise.",
     contact: "+55 11 4040-XZRK",
     responseTime: "Canal público",
@@ -70,7 +70,7 @@ export default function ContactPage() {
                     Envie uma mensagem
                   </h2>
                   <p className="mt-2 text-sm text-muted-foreground">
-                    Resposta em até 24h úteis. Para urgência, use o canal direto correspondente.
+                    Escolha o canal correspondente. O envio do formulário será conectado a um backend em uma próxima etapa.
                   </p>
                   <div className="mt-8">
                     <ContactForm />
@@ -100,7 +100,7 @@ export default function ContactPage() {
                               <h3 className="text-base font-medium tracking-tight">
                                 {c.title}
                               </h3>
-                              <span className="font-mono text-[10px] uppercase tracking-[0.18em] text-success">
+                              <span className="font-mono text-[10px] uppercase tracking-[0.18em] text-muted-foreground">
                                 {c.responseTime}
                               </span>
                             </div>

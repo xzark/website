@@ -12,7 +12,7 @@ const faqItems: { q: string; a: React.ReactNode }[] = [
   },
   {
     q: "Como minhas credenciais são protegidas?",
-    a: "Todos os segredos são criptografados em repouso (AES-256) e em trânsito (TLS 1.3). API Keys têm escopos e podem ser rotacionadas a qualquer momento.",
+    a: "O produto é apresentado como um conceito de cofre para segredos, com escopos e rotação como requisitos de segurança a serem implementados e verificados.",
   },
   {
     q: "Posso usar ambientes separados?",
