@@ -18,7 +18,10 @@ export type ApplicationValues = {
   phone: string
   location: string
   linkedin: string
+  github: string
   portfolio: string
+  experience: string
+  education: string
   availability: string
   message: string
   consent: boolean
@@ -60,16 +63,29 @@ export function validateApplication(values: ApplicationValues): FormIssue[] {
   required(values.email, "E-mail", "email", issues)
   required(values.location, "Localização", "location", issues)
   required(values.availability, "Disponibilidade", "availability", issues)
+  required(values.experience, "Experiência", "experience", issues)
   if (values.email.trim()) validateEmail(values.email, issues)
   validateUrl(values.linkedin, "linkedin", "LinkedIn", issues)
+  validateUrl(values.github, "github", "GitHub", issues)
   validateUrl(values.portfolio, "portfolio", "Portfólio", issues)
   if (!values.consent) issues.push({ field: "consent", message: "Aceite o consentimento de dados." })
   return issues
 }
 
-export function validatePdf(file: File | null): string | null {
-  if (!file) return "Selecione seu currículo em PDF."
-  if (file.type !== "application/pdf") return "O currículo precisa ser um arquivo PDF."
-  if (file.size > 5 * 1024 * 1024) return "O currículo deve ter no máximo 5 MB."
+export const MAX_CV_SIZE = 10 * 1024 * 1024
+
+export function validatePdfMetadata(file: File | null): string | null {
+  if (!file) return "Upload your CV"
+  const isPdfName = file.name.toLowerCase().endsWith(".pdf")
+  if (!isPdfName || file.type !== "application/pdf") return "Only PDF files are accepted."
+  if (file.size > MAX_CV_SIZE) return "Your CV exceeds the 10 MB limit. Please upload a smaller PDF."
   return null
+}
+
+export async function validatePdf(file: File | null): Promise<string | null> {
+  const metadataIssue = validatePdfMetadata(file)
+  if (metadataIssue || !file) return metadataIssue
+  const header = await file.slice(0, 5).arrayBuffer()
+  const signature = new TextDecoder().decode(header)
+  return signature === "%PDF-" ? null : "Only PDF files are accepted."
 }
