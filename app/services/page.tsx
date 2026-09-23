@@ -31,7 +31,7 @@ export default function ServicesPage() {
               Engenharia de segurança <span className="font-serif italic text-primary">sob demanda</span>.
             </>
           }
-          description="Times sêniores especializados em cibersegurança ofensiva e defensiva. Operamos como extensão da sua equipe, com SLAs contratuais e entregáveis claros."
+          description="Times especializados em cibersegurança ofensiva e defensiva, com escopo, entregáveis e compromissos definidos para cada engajamento."
           meta={[
             { label: "SLA mínimo", value: "99.9%" },
             { label: "Resposta P1", value: "< 15min" },

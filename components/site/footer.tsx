@@ -33,6 +33,7 @@ const cols = [
       { label: "Segurança", href: "/security" },
       { label: "FAQ", href: "/faq" },
       { label: "Contato", href: "/contact" },
+      { label: "Careers — Join xZark", href: "/careers" },
     ],
   },
   {
@@ -41,7 +42,6 @@ const cols = [
       { label: "Termos de Uso", href: "/terms" },
       { label: "Política de Privacidade", href: "/privacy" },
       { label: "Política de Cookies", href: "/cookies" },
-      { label: "Status", href: "/status" },
     ],
   },
 ]
@@ -111,13 +111,8 @@ export function Footer() {
           <p className="font-mono text-[11px] text-muted-foreground">
             &copy; {new Date().getFullYear()} {siteConfig.name}. Todos os direitos reservados.
           </p>
-          <div className="flex items-center gap-4 font-mono text-[11px] text-muted-foreground">
-            <span className="inline-flex items-center gap-2">
-              <span aria-hidden className="size-1.5 animate-pulse-soft rounded-full bg-success" />
-              Todos os sistemas operacionais
-            </span>
-            <span className="hidden md:inline">·</span>
-            <span className="hidden md:inline">{siteConfig.domain}</span>
+          <div className="font-mono text-[11px] text-muted-foreground">
+            <span>{siteConfig.domain}</span>
           </div>
         </div>
       </div>

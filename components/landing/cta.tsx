@@ -24,7 +24,7 @@ export function CTA() {
             .
           </h2>
           <p className="mx-auto mt-6 max-w-xl text-pretty text-base leading-relaxed text-muted-foreground md:text-lg">
-            Converse com nosso time de engenharia. Setup técnico em até 14 dias, com migração assistida e SLA contratual desde o dia um.
+            Converse com nosso time de engenharia sobre seu contexto, requisitos e próximos passos técnicos.
           </p>
           <div className="mt-10 flex flex-col items-center justify-center gap-3 sm:flex-row">
             <Button
@@ -47,7 +47,7 @@ export function CTA() {
             </Button>
           </div>
           <p className="mt-8 font-mono text-[11px] text-muted-foreground">
-            Resposta em até 24h úteis · Atendimento em pt-BR, EN e ES
+            Atendimento técnico em português, inglês e espanhol
           </p>
         </div>
       </div>

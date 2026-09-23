@@ -6,7 +6,7 @@
  * deve ser plugada em Server Action no momento do deploy.
  */
 import { useState } from "react"
-import { Check, Loader2, Send } from "lucide-react"
+import { Check, Send } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
@@ -18,40 +18,50 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select"
+import { validateContact, type FormIssue } from "@/lib/validation/forms"
 
-type Status = "idle" | "loading" | "success"
+type Status = "idle" | "loading" | "unavailable"
 
 export function ContactForm() {
   const [status, setStatus] = useState<Status>("idle")
   const [topic, setTopic] = useState<string>("commercial")
+  const [issues, setIssues] = useState<FormIssue[]>([])
 
-  async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
+  function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault()
-    setStatus("loading")
-    // Simula envio — em produção, integrar com API protegida + rate limit.
-    await new Promise((r) => setTimeout(r, 900))
-    setStatus("success")
+    const form = new FormData(e.currentTarget)
+    const nextIssues = validateContact({
+      name: String(form.get("name") ?? ""),
+      email: String(form.get("email") ?? ""),
+      company: String(form.get("company") ?? ""),
+      topic,
+      message: String(form.get("message") ?? ""),
+      consent: form.get("consent") === "on",
+    })
+    setIssues(nextIssues)
+    if (nextIssues.length > 0) return
+    setStatus("unavailable")
   }
 
-  if (status === "success") {
+  if (status === "unavailable") {
     return (
       <div className="flex flex-col items-start gap-4 rounded-lg border border-success/30 bg-success/5 p-6">
-        <div className="inline-flex size-10 items-center justify-center rounded-full border border-success/40 bg-success/10">
-          <Check className="size-5 text-success" />
+        <div className="inline-flex size-10 items-center justify-center rounded-full border border-primary/40 bg-primary/10">
+          <Check className="size-5 text-primary" />
         </div>
         <div>
-          <h3 className="text-lg font-medium">Mensagem recebida.</h3>
-          <p className="mt-1 text-sm text-muted-foreground">
-            Um engenheiro do time correspondente responderá em até 24h úteis.
+          <h3 className="text-lg font-medium">Validação concluída.</h3>
+          <p className="mt-1 text-sm leading-relaxed text-muted-foreground">
+            O formulário está pronto, mas o envio ainda não está conectado a um backend. Nenhuma mensagem foi transmitida.
           </p>
         </div>
         <Button
           variant="ghost"
           size="sm"
-          onClick={() => setStatus("idle")}
+          onClick={() => { setStatus("idle"); setIssues([]) }}
           className="border border-border/80"
         >
-          Enviar nova mensagem
+          Editar mensagem
         </Button>
       </div>
     )
@@ -122,6 +132,12 @@ export function ContactForm() {
         />
       </Field>
 
+      {issues.length > 0 && (
+        <p role="alert" className="text-sm text-destructive">
+          {issues[0].message}
+        </p>
+      )}
+
       <div className="flex items-start gap-2.5 pt-2">
         <input
           id="consent"
@@ -141,24 +157,15 @@ export function ContactForm() {
 
       <div className="flex items-center justify-between gap-4 pt-2">
         <p className="font-mono text-[10.5px] uppercase tracking-[0.18em] text-muted-foreground">
-          TLS 1.3 · ponta a ponta
+          Validação local · sem transmissão
         </p>
         <Button
           type="submit"
           disabled={status === "loading"}
           className="h-10 rounded-md bg-foreground px-5 text-sm font-medium text-background hover:bg-foreground/90 disabled:opacity-70"
         >
-          {status === "loading" ? (
-            <>
-              <Loader2 className="size-4 animate-spin" />
-              Enviando…
-            </>
-          ) : (
-            <>
-              Enviar mensagem
-              <Send className="size-4" />
-            </>
-          )}
+          Validar mensagem
+          <Send className="size-4" />
         </Button>
       </div>
     </form>

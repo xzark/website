@@ -12,7 +12,7 @@ const faqItems: { q: string; a: React.ReactNode }[] = [
   },
   {
     q: "Como minhas credenciais são protegidas?",
-    a: "Todos os segredos são criptografados em repouso (AES-256) e em trânsito (TLS 1.3). API Keys têm escopos e podem ser rotacionadas a qualquer momento.",
+    a: "O produto é apresentado como um conceito de cofre para segredos, com escopos e rotação como requisitos de segurança a serem implementados e verificados.",
   },
   {
     q: "Posso usar ambientes separados?",
@@ -24,7 +24,7 @@ const faqItems: { q: string; a: React.ReactNode }[] = [
   },
   {
     q: "A plataforma é compatível com requisitos de conformidade?",
-    a: "Sim. A xZark é compatível com LGPD, GDPR e SOC 2 Type II, com audit logs imutáveis para suportar auditorias.",
+    a: "Os produtos são conceitos em desenvolvimento. Requisitos de conformidade e controles específicos devem ser avaliados em uma etapa técnica futura.",
   },
 ]
 
