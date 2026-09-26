@@ -5,9 +5,9 @@
 import { GridBackground } from "./grid-background"
 
 interface PageHeroProps {
-  eyebrow: string
+  eyebrow: React.ReactNode
   title: React.ReactNode
-  description?: string
+  description?: React.ReactNode
   meta?: { label: string; value: string }[]
 }
 

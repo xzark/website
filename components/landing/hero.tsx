@@ -9,6 +9,7 @@ import Link from "next/link"
 import { motion } from "framer-motion"
 import { ArrowUpRight } from "lucide-react"
 import { GridBackground } from "@/components/site/grid-background"
+import { LocaleText } from "@/components/site/locale-text"
 import { Button } from "@/components/ui/button"
 
 export function Hero() {
@@ -27,7 +28,7 @@ export function Hero() {
           <div className="inline-flex items-center gap-2 rounded-full border border-border/80 bg-card/60 px-3 py-1 backdrop-blur">
             <span aria-hidden className="size-1.5 animate-pulse-soft rounded-full bg-success" />
             <span className="font-mono text-[10.5px] uppercase tracking-[0.2em] text-muted-foreground">
-              Conceitos de segurança — em evolução
+              <LocaleText pt="Conceitos de segurança — em evolução" en="Security concepts — evolving" />
             </span>
           </div>
         </motion.div>
@@ -41,10 +42,10 @@ export function Hero() {
         >
           <div>
             <p className="font-mono text-[10.5px] uppercase tracking-[0.2em] text-primary">
-              Infraestrutura pública — visão técnica
+              <LocaleText pt="Infraestrutura pública — visão técnica" en="Public infrastructure — technical view" />
             </p>
             <p className="mt-2 max-w-md text-sm leading-relaxed text-muted-foreground">
-              Visão técnica de infraestrutura zero-trust, com pesquisa em autenticação forte, isolamento e rastreabilidade verificável.
+              <LocaleText pt="Visão técnica de infraestrutura zero-trust, com pesquisa em autenticação forte, isolamento e rastreabilidade verificável." en="A technical view of zero-trust infrastructure, exploring strong authentication, isolation, and verifiable traceability." />
             </p>
           </div>
           <div className="md:text-right">
@@ -52,7 +53,7 @@ export function Hero() {
               Status
             </p>
             <p className="mt-2 font-mono text-[11px] text-muted-foreground">
-              Pesquisa e desenvolvimento
+              <LocaleText pt="Pesquisa e desenvolvimento" en="Research and development" />
             </p>
           </div>
         </motion.div>
@@ -77,7 +78,7 @@ export function Hero() {
           transition={{ duration: 0.6, delay: 0.2 }}
           className="mt-8 max-w-xl text-pretty text-base leading-relaxed text-muted-foreground md:text-lg"
         >
-          xZark é a infraestrutura de cibersegurança e privacidade para empresas que tratam segurança como produto, não como custo. Identidade, proteção, criptografia e rede em uma única plataforma.
+          <LocaleText pt="xZark é a infraestrutura de cibersegurança e privacidade para empresas que tratam segurança como produto, não como custo. Identidade, proteção, criptografia e rede em uma única plataforma." en="xZark is cybersecurity and privacy infrastructure for companies that treat security as a product, not a cost. Identity, protection, cryptography, and network in one platform." />
         </motion.p>
 
         {/* CTAs */}
@@ -93,7 +94,7 @@ export function Hero() {
             className="h-11 rounded-md bg-foreground px-5 text-sm font-medium text-background hover:bg-foreground/90"
           >
             <Link href="/contact">
-              Solicitar acesso
+              <LocaleText pt="Solicitar acesso" en="Request access" />
               <ArrowUpRight className="ml-1 size-4" />
             </Link>
           </Button>
@@ -103,7 +104,7 @@ export function Hero() {
             variant="ghost"
             className="h-11 rounded-md border border-border/80 bg-transparent px-5 text-sm font-medium text-foreground hover:bg-accent/40"
           >
-            <Link href="/products">Explorar produtos</Link>
+            <Link href="/products"><LocaleText pt="Explorar produtos" en="Explore products" /></Link>
           </Button>
         </motion.div>
 

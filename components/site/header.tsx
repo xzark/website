@@ -25,6 +25,7 @@ export function Header() {
   function changeLocale(nextLocale: Locale) {
     setLocale(nextLocale)
     document.cookie = `xzark-locale=${nextLocale}; path=/; max-age=31536000; SameSite=Lax`
+    window.dispatchEvent(new Event("xzark-locale-change"))
   }
 
   useEffect(() => {
