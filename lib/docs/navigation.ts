@@ -39,20 +39,10 @@ export const docsNavigation: DocNavGroup[] = [
     ],
   },
   {
-    label: "xVault",
+    label: "Produtos",
     items: [
-      { title: "Visão geral", slug: ["xvault"] },
-      { title: "Gerenciar segredos", slug: ["xvault", "segredos"] },
-      { title: "Variáveis de ambiente", slug: ["xvault", "variaveis-de-ambiente"] },
-      { title: "Rotação de segredos", slug: ["xvault", "rotacao"] },
-      { title: "Audit logs", slug: ["xvault", "audit-logs"] },
-      { title: "Tratamento de erros", slug: ["xvault", "erros"] },
-    ],
-  },
-  {
-    label: "xAuth",
-    items: [
-      { title: "Visão geral", slug: ["xauth"] },
+      { title: "xAuth", slug: ["xauth"] },
+      { title: "xShield", slug: ["xshield"] },
     ],
   },
   {

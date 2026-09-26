@@ -76,3 +76,45 @@ export const auth = new XAuth({
     },
   ],
 }
+
+export const xshieldOverview: DocContent = {
+  eyebrow: "xShield",
+  title: "xShield",
+  description: "Conceitos de proteção de aplicações, análise de ameaças e políticas de segurança em desenvolvimento.",
+  updatedAt: "2026-06-10",
+  sections: [
+    {
+      id: "visao-geral",
+      title: "Visão geral",
+      content: (
+        <Prose>
+          <Lead>
+            O xShield explora uma camada de segurança para aplicações modernas,
+            conectando políticas, sinais de ameaça e decisões de proteção.
+          </Lead>
+          <FeatureGrid items={["Políticas de aplicação", "Análise de ameaças", "Superfícies digitais", "Monitoramento orientado a risco"]} />
+          <Callout variant="info">
+            O xShield está em desenvolvimento. Esta página descreve direção
+            técnica e não representa disponibilidade operacional.
+          </Callout>
+        </Prose>
+      ),
+    },
+    {
+      id: "escopo",
+      title: "Escopo explorado",
+      content: (
+        <Prose>
+          <p>
+            A pesquisa do produto considera controles de acesso, proteção de
+            rotas, análise de comportamento e integração com fluxos de resposta.
+          </p>
+          <Callout variant="tip" title="Próximos passos">
+            A referência técnica será publicada conforme as interfaces do
+            produto forem definidas e validadas.
+          </Callout>
+        </Prose>
+      ),
+    },
+  ],
+}

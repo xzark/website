@@ -30,7 +30,7 @@ export const metadata: Metadata = {
     template: "%s — xZark",
   },
   description:
-    "Infraestrutura de cibersegurança e privacidade para empresas que não toleram falhas. Autenticação, proteção, vault, cloud e gateway em uma única plataforma.",
+    "Infraestrutura de cibersegurança e privacidade para sistemas digitais modernos. Autenticação, proteção de aplicações e engenharia de segurança em evolução.",
   keywords: [
     "cybersecurity",
     "cibersegurança",
@@ -39,9 +39,6 @@ export const metadata: Metadata = {
     "zero trust",
     "xAuth",
     "xShield",
-    "xVault",
-    "xCloud",
-    "xGate",
     "infrastructure",
     "enterprise security",
   ],

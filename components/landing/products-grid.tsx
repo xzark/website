@@ -1,6 +1,6 @@
 /**
- * ProductsGrid — bento grid premium dos 5 produtos xZark.
- * Card destaque (xAuth) + 4 cards secundários, todos linkáveis.
+ * ProductsGrid — bento grid dos produtos em desenvolvimento da xZark.
+ * Card destaque (xAuth) + produto complementar, ambos linkáveis.
  */
 import Link from "next/link"
 import { ArrowUpRight } from "lucide-react"
@@ -22,7 +22,7 @@ export function ProductsGrid() {
             eyebrow="Plataforma"
             title={
               <>
-                Cinco produtos. <span className="font-serif italic text-primary">Uma</span> infraestrutura.
+                Dois produtos. <span className="font-serif italic text-primary">Uma</span> direção.
               </>
             }
             description="Cada produto explora uma camada da pilha de segurança. Juntos, apresentam uma visão modular de infraestrutura zero-trust."
@@ -96,11 +96,9 @@ function ProductCard({
           <span
             className={cn(
               "rounded-full border px-2 py-0.5 font-mono text-[10px] uppercase tracking-[0.18em]",
-              product.status === "GA"
-                ? "border-success/30 bg-success/10 text-success"
-                : product.status === "Beta"
-                  ? "border-primary/30 bg-primary/10 text-primary"
-                  : "border-border bg-muted text-muted-foreground",
+              product.status === "Preview"
+                ? "border-primary/30 bg-primary/10 text-primary"
+                : "border-border bg-muted text-muted-foreground",
             )}
           >
             {product.status}

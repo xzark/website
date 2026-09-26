@@ -11,15 +11,7 @@ import {
   exemplos,
   referencia,
 } from "@/lib/docs/content/fundamentals"
-import {
-  xvaultAuditLogs,
-  xvaultEnv,
-  xvaultErrors,
-  xvaultOverview,
-  xvaultRotation,
-  xvaultSecrets,
-} from "@/lib/docs/content/xvault"
-import { xauthOverview } from "@/lib/docs/content/xauth"
+import { xauthOverview, xshieldOverview } from "@/lib/docs/content/xauth"
 import { changelog, faq } from "@/lib/docs/content/resources"
 
 /**
@@ -38,16 +30,9 @@ export const docsRegistry: DocRegistry = {
   exemplos: exemplos,
   referencia: referencia,
 
-  // xVault
-  xvault: xvaultOverview,
-  "xvault/segredos": xvaultSecrets,
-  "xvault/variaveis-de-ambiente": xvaultEnv,
-  "xvault/rotacao": xvaultRotation,
-  "xvault/audit-logs": xvaultAuditLogs,
-  "xvault/erros": xvaultErrors,
-
-  // xAuth
+  // Produtos
   xauth: xauthOverview,
+  xshield: xshieldOverview,
 
   // Recursos
   faq: faq,

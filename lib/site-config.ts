@@ -418,4 +418,3 @@ export const getSiteConfig = () => siteConfig
 export const getMainNav = () => mainNav
 export const getAnnouncements = () => announcements
 export const getServices = () => services
-export const getDocumentation = () => documentation
