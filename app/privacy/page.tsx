@@ -9,4 +9,4 @@ const sections: LegalSection[] = [
   { id: "rights", title: "Solicitações", content: <p>Para dúvidas ou solicitações relacionadas a uma mensagem enviada, utilize a página de contato informando o endereço usado na comunicação.</p> },
   { id: "security", title: "Segurança", content: <p>Aplicamos medidas razoáveis para proteger as comunicações recebidas. Nenhum canal público deve ser usado para enviar chaves, senhas ou material confidencial.</p> },
 ]
-export default function PrivacyPage() { return <LegalPage eyebrow="Documento legal" title={<>Política de <span className="font-serif italic text-primary">Privacidade</span>.</>} description="Como o site público xZark trata mensagens e dados enviados por contato." lastUpdated="07/09/2026" sections={sections} /> }
+export default function PrivacyPage() { return <LegalPage eyebrow="Documento legal" title={<>Política de <span className="font-serif italic text-primary">Privacidade</span>.</>} description="Como o site público xZark trata mensagens e dados enviados por contato." lastUpdated="[DATA DE ATUALIZAÇÃO]" sections={sections} /> }

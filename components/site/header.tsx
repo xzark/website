@@ -6,7 +6,8 @@
  */
 import Link from "next/link"
 import { useEffect, useState } from "react"
-import { Menu, Search, X } from "lucide-react"
+import { Menu, Search, X, Languages } from "lucide-react"
+import { isLocale, t, type Locale } from "@/lib/i18n"
 import { Logo } from "./logo"
 import { mainNav } from "@/lib/site-config"
 import { cn } from "@/lib/utils"
@@ -14,6 +15,17 @@ import { cn } from "@/lib/utils"
 export function Header() {
   const [scrolled, setScrolled] = useState(false)
   const [mobileOpen, setMobileOpen] = useState(false)
+  const [locale, setLocale] = useState<Locale>("pt-BR")
+
+  useEffect(() => {
+    const stored = document.cookie.split("; ").find((item) => item.startsWith("xzark-locale="))?.split("=")[1]
+    if (isLocale(stored)) setLocale(stored)
+  }, [])
+
+  function changeLocale(nextLocale: Locale) {
+    setLocale(nextLocale)
+    document.cookie = `xzark-locale=${nextLocale}; path=/; max-age=31536000; SameSite=Lax`
+  }
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 8)
@@ -36,7 +48,7 @@ export function Header() {
         <div className="flex items-center gap-8">
           <Logo />
           <nav
-            aria-label="Navegação principal"
+            aria-label={locale === "en" ? "Main navigation" : "Navegação principal"}
             className="hidden items-center gap-1 md:flex"
           >
             {mainNav.map((item) => (
@@ -45,7 +57,7 @@ export function Header() {
                 href={item.href}
                 className="rounded-md px-3 py-1.5 text-[13px] text-muted-foreground transition-colors hover:bg-accent/40 hover:text-foreground"
               >
-                {item.label}
+                {locale === "en" ? ({ Produtos: "Products", Serviços: "Services", Segurança: "Security", Sobre: "About", Careers: "Careers" } as Record<string, string>)[item.label] ?? item.label : item.label}
               </Link>
             ))}
           </nav>
@@ -55,16 +67,23 @@ export function Header() {
         <div className="flex items-center gap-2">
           <button
             type="button"
-            aria-label="Buscar"
+            aria-label={locale === "en" ? "Search" : "Buscar"}
             className="hidden size-8 items-center justify-center rounded-md text-muted-foreground transition-colors hover:bg-accent/40 hover:text-foreground md:inline-flex"
           >
             <Search className="size-4" />
           </button>
+          <label className="hidden items-center gap-1.5 text-[11px] text-muted-foreground md:flex" title={t(locale, "language")}>
+            <Languages className="size-3.5" />
+            <select aria-label={t(locale, "language")} value={locale} onChange={(event) => changeLocale(event.target.value as Locale)} className="bg-transparent text-[11px] text-foreground outline-none">
+              <option value="pt-BR">PT-BR</option>
+              <option value="en">EN</option>
+            </select>
+          </label>
           <Link
             href="/contact"
             className="hidden text-[13px] text-muted-foreground transition-colors hover:text-foreground md:inline-flex md:items-center md:px-3 md:py-1.5"
           >
-            Contato
+            {t(locale, "contact")}
           </Link>
           <button
             type="button"
@@ -92,7 +111,7 @@ export function Header() {
                 onClick={() => setMobileOpen(false)}
                 className="rounded-md px-3 py-2 text-sm text-muted-foreground transition-colors hover:bg-accent/40 hover:text-foreground"
               >
-                {item.label}
+                {locale === "en" ? ({ Produtos: "Products", Serviços: "Services", Segurança: "Security", Sobre: "About", Careers: "Careers" } as Record<string, string>)[item.label] ?? item.label : item.label}
               </Link>
             ))}
             <Link
@@ -100,8 +119,15 @@ export function Header() {
               onClick={() => setMobileOpen(false)}
               className="rounded-md px-3 py-2 text-sm text-muted-foreground transition-colors hover:bg-accent/40 hover:text-foreground"
             >
-              Contato
+              {t(locale, "contact")}
             </Link>
+            <label className="mt-2 flex items-center justify-between border-t border-border/60 px-3 pt-3 text-sm text-muted-foreground">
+              <span>{t(locale, "language")}</span>
+              <select aria-label={t(locale, "language")} value={locale} onChange={(event) => changeLocale(event.target.value as Locale)} className="bg-transparent text-foreground outline-none">
+                <option value="pt-BR">{t(locale, "portuguese")}</option>
+                <option value="en">{t(locale, "english")}</option>
+              </select>
+            </label>
           </nav>
         </div>
       )}
