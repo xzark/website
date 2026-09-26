@@ -44,7 +44,7 @@ export function Hero() {
               Infraestrutura pública — visão técnica
             </p>
             <p className="mt-2 max-w-md text-sm leading-relaxed text-muted-foreground">
-              Infraestrutura zero-trust com mTLS nativo, isolamento por hardware e auditoria criptográfica imutável.
+              Visão técnica de infraestrutura zero-trust, com pesquisa em autenticação forte, isolamento e rastreabilidade verificável.
             </p>
           </div>
           <div className="md:text-right">

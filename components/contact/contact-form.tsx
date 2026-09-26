@@ -6,6 +6,7 @@
  * deve ser plugada em Server Action no momento do deploy.
  */
 import { useState } from "react"
+import Link from "next/link"
 import { Check, Send } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
@@ -148,9 +149,9 @@ export function ContactForm() {
         />
         <label htmlFor="consent" className="text-xs leading-relaxed text-muted-foreground">
           Concordo com a{" "}
-          <a href="/privacy" className="text-foreground underline-offset-4 hover:underline">
+          <Link href="/privacy" className="text-foreground underline-offset-4 hover:underline">
             Política de Privacidade
-          </a>{" "}
+          </Link>{" "}
           e o tratamento dos meus dados conforme descrito.
         </label>
       </div>
