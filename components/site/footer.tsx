@@ -19,12 +19,12 @@ const cols = [
   {
     title: "Serviços",
     links: [
-      { label: "Security Audit", href: "/services#security-audit" },
-      { label: "Incident Response", href: "/services#incident-response" },
-      { label: "Compliance", href: "/services#compliance" },
-      { label: "Zero Trust", href: "/services#zero-trust" },
-      { label: "Threat Hunting", href: "/services#threat-hunting" },
-      { label: "Managed Security", href: "/services#managed-security" },
+{ label: "Auditoria de segurança", href: "/services#security-audit" },
+  { label: "Resposta a incidentes", href: "/services#incident-response" },
+  { label: "Conformidade", href: "/services#compliance" },
+  { label: "Zero Trust", href: "/services#zero-trust" },
+  { label: "Caça a ameaças", href: "/services#threat-hunting" },
+  { label: "Segurança gerenciada", href: "/services#managed-security" },
     ],
   },
   {
@@ -34,7 +34,7 @@ const cols = [
       { label: "Segurança", href: "/security" },
       { label: "FAQ", href: "/faq" },
       { label: "Contato", href: "/contact" },
-      { label: "Careers — Join xZark", href: "/careers" },
+      { label: "Carreiras — Junte-se à xZark", href: "/careers" },
     ],
   },
   {
