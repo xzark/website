@@ -31,14 +31,21 @@ export default function ServicesPage() {
               Engenharia de segurança <span className="font-serif italic text-primary">sob demanda</span>.
             </>
           }
-          description="Times especializados em cibersegurança ofensiva e defensiva, com escopo, entregáveis e compromissos definidos para cada engajamento."
-          meta={[
-            { label: "SLA mínimo", value: "99.9%" },
-            { label: "Resposta P1", value: "< 15min" },
-            { label: "Engenheiros", value: "120+" },
-            { label: "Países atendidos", value: "42" },
-          ]}
+          description="Serviços de segurança estruturados para organizações que precisam avaliar, projetar e fortalecer seus sistemas."
         />
+
+        <section className="border-b border-border/60 bg-muted/10 py-8 md:py-10">
+          <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+            <div className="max-w-2xl">
+              <p className="font-mono text-[10.5px] uppercase tracking-[0.2em] text-primary">
+                Engenharia especializada
+              </p>
+              <p className="mt-3 text-sm leading-relaxed text-muted-foreground md:text-base">
+                Cada serviço depende de avaliação de escopo, disponibilidade e confirmação comercial. Prazos, entregáveis e compromissos são definidos caso a caso.
+              </p>
+            </div>
+          </div>
+        </section>
 
         <section className="border-b border-border/60 bg-background py-20 md:py-24">
           <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">

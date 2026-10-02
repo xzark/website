@@ -30,7 +30,7 @@ export const metadata: Metadata = {
     template: "%s — xZark",
   },
   description:
-    "Infraestrutura de cibersegurança e privacidade para empresas que não toleram falhas. Autenticação, proteção, vault, cloud e gateway em uma única plataforma.",
+    "Infraestrutura de cibersegurança e privacidade para sistemas digitais modernos. Autenticação, proteção de aplicações e engenharia de segurança em evolução.",
   keywords: [
     "cybersecurity",
     "cibersegurança",
@@ -39,9 +39,6 @@ export const metadata: Metadata = {
     "zero trust",
     "xAuth",
     "xShield",
-    "xVault",
-    "xCloud",
-    "xGate",
     "infrastructure",
     "enterprise security",
   ],
@@ -70,8 +67,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "xZark — Cybersecurity & Privacy Infrastructure",
     description:
-      "Infraestrutura de cibersegurança e privacidade engenheirada para empresas modernas.",
-    creator: "@xzark",
+      "Infraestrutura de cibersegurança e privacidade para empresas modernas.",
   },
   // Robots — defensivo, sem indexar áreas sensíveis (configurado via robots.ts)
   robots: {
@@ -89,11 +85,6 @@ export const metadata: Metadata = {
   },
   alternates: {
     canonical: "/",
-    languages: {
-      "pt-BR": "/",
-      en: "/en",
-      es: "/es",
-    },
   },
   icons: {
     icon: [

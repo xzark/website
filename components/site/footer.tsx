@@ -6,6 +6,7 @@ import Link from "next/link"
 import { Logo } from "./logo"
 import { siteConfig, products } from "@/lib/site-config"
 import { Github, Linkedin, Twitter } from "lucide-react"
+import { LocaleText } from "@/components/site/locale-text"
 
 const cols = [
   {
@@ -58,7 +59,7 @@ export function Footer() {
           <div className="col-span-2">
             <Logo />
             <p className="mt-4 max-w-xs text-sm leading-relaxed text-muted-foreground">
-              Infraestrutura de cibersegurança e privacidade engenheirada para empresas que não toleram falhas.
+              <LocaleText pt="Infraestrutura de cibersegurança e privacidade engenheirada para empresas que não toleram falhas." en="Engineered cybersecurity and privacy infrastructure for companies that do not tolerate failure." />
             </p>
             <div className="mt-6 flex items-center gap-2">
               <a
@@ -88,7 +89,7 @@ export function Footer() {
           {cols.map((col) => (
             <div key={col.title}>
               <h3 className="font-mono text-[10.5px] uppercase tracking-[0.2em] text-muted-foreground">
-                {col.title}
+                <LocaleText pt={col.title} en={({ Produtos: "Products", Serviços: "Services", Empresa: "Company", Legal: "Legal" } as Record<string, string>)[col.title] ?? col.title} />
               </h3>
               <ul className="mt-4 space-y-2.5">
                 {col.links.map((l) => (

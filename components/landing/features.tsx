@@ -29,7 +29,7 @@ const features = [
     icon: EyeOff,
     title: "Privacidade verificável",
     description:
-      "Criptografia ponta a ponta com chaves sob seu controle (BYOK). Provas criptográficas de não-acesso publicadas mensalmente.",
+      "Exploramos criptografia ponta a ponta e modelos em que organizações mantêm maior controle sobre suas chaves.",
   },
   {
     icon: Globe,
@@ -41,13 +41,13 @@ const features = [
     icon: TerminalSquare,
     title: "API-first, programável",
     description:
-      "Tudo na xZark é API. CLI, Terraform, SDKs em 12 linguagens e integração nativa com seu pipeline existente.",
+      "Arquitetura API-first, projetada para integração com stacks modernas e evoluída em pesquisa e desenvolvimento.",
   },
   {
     icon: GitBranch,
     title: "Auditoria imutável",
     description:
-      "Cada evento é assinado criptograficamente e armazenado em log append-only. Rastreabilidade completa, à prova de adulteração.",
+      "Pesquisamos modelos de rastreabilidade verificável para eventos de segurança, sem apresentar controles futuros como operação disponível.",
   },
 ]
 

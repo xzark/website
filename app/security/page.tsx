@@ -7,6 +7,7 @@ import { Footer } from "@/components/site/footer"
 import { PageHero } from "@/components/site/page-hero"
 import { SectionHeader } from "@/components/site/section-header"
 import { CTA } from "@/components/landing/cta"
+import { LocaleText } from "@/components/site/locale-text"
 
 export const metadata: Metadata = {
   title: "Segurança",
@@ -28,9 +29,9 @@ export default function SecurityPage() {
       <Header />
       <main>
         <PageHero
-          eyebrow="Princípios de segurança"
-          title={<>Defesa em <span className="font-serif italic text-primary">profundidade</span>.</>}
-          description="A xZark explora uma abordagem de segurança baseada em identidade, segmentação, criptografia e controles verificáveis. Esta página apresenta conceitos, não certificações ou métricas operacionais."
+          eyebrow={<LocaleText pt="Princípios de segurança" en="Security principles" />}
+          title={<LocaleText pt={<>Defesa em <span className="font-serif italic text-primary">profundidade</span>.</>} en={<>Defense in <span className="font-serif italic text-primary">depth</span>.</>} />}
+          description={<LocaleText pt="A xZark explora uma abordagem de segurança baseada em identidade, segmentação, criptografia e controles verificáveis. Esta página apresenta conceitos, não certificações ou métricas operacionais." en="xZark explores a security approach based on identity, segmentation, cryptography, and verifiable controls. This page presents concepts, not certifications or operational metrics." />}
         />
 
         <section className="border-b border-border/60 bg-background py-20 md:py-28">

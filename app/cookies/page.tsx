@@ -8,4 +8,4 @@ const sections: LegalSection[] = [
   { id: "control", title: "Controle", content: <p>Você pode bloquear ou remover cookies nas configurações do navegador. Algumas preferências de navegação podem deixar de funcionar.</p> },
   { id: "contact", title: "Dúvidas", content: <p>Para questões sobre esta política, utilize a página de contato.</p> },
 ]
-export default function CookiesPage() { return <LegalPage eyebrow="Documento legal" title={<>Política de <span className="font-serif italic text-primary">Cookies</span>.</>} description="Uso de cookies no site público xZark." lastUpdated="07/09/2026" sections={sections} /> }
+export default function CookiesPage() { return <LegalPage eyebrow="Documento legal" title={<>Política de <span className="font-serif italic text-primary">Cookies</span>.</>} description="Uso de cookies no site público xZark." lastUpdated="[DATA DE ATUALIZAÇÃO]" sections={sections} /> }
