@@ -5,6 +5,7 @@ import { Footer } from "@/components/site/footer"
 import { PageHero } from "@/components/site/page-hero"
 import { ContactForm } from "@/components/contact/contact-form"
 import { Mail, MessageSquare, Phone, Shield } from "lucide-react"
+import { LocaleText } from "@/components/site/locale-text"
 
 export const metadata: Metadata = {
   title: "Contato",
@@ -51,13 +52,9 @@ export default function ContactPage() {
       <Header />
       <main>
         <PageHero
-          eyebrow="Contato"
-          title={
-            <>
-              Vamos <span className="font-serif italic text-primary">conversar</span>.
-            </>
-          }
-          description="Engenheiros falam com engenheiros. Sem SDR genérico, sem script — apenas pessoas que entendem o que você está construindo."
+          eyebrow={<LocaleText pt="Contato" en="Contact" />}
+          title={<LocaleText pt={<>Vamos <span className="font-serif italic text-primary">conversar</span>.</>} en={<>Let&apos;s <span className="font-serif italic text-primary">talk</span>.</>} />}
+          description={<LocaleText pt="Engenheiros falam com engenheiros. Sem SDR genérico, sem script — apenas pessoas que entendem o que você está construindo." en="Engineers talk to engineers. No generic SDRs, no scripts — just people who understand what you are building." />}
         />
 
         <section className="border-b border-border/60 bg-background py-20 md:py-28">
