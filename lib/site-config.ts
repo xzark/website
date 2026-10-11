@@ -36,6 +36,7 @@ export const services: Service[] = [
 
 export const mainNav = [
   { label: "Produtos", href: "/products" },
+  { label: "Planos xAuth", href: "/products/xauth/pricing" },
   { label: "Serviços", href: "/services" },
   { label: "Segurança", href: "/security" },
   { label: "Sobre", href: "/about" },
