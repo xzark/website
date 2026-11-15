@@ -41,7 +41,7 @@ export function Footer() {
           <div className="col-span-2">
             <Logo />
             <p className="mt-4 max-w-xs text-sm leading-relaxed text-muted-foreground">
-              <LocaleText pt="Infraestrutura de cibersegurança e privacidade engenheirada para empresas que não toleram falhas." en="Engineered cybersecurity and privacy infrastructure for companies that do not tolerate failure." />
+              <LocaleText pt="Pesquisa em cibersegurança e privacidade, com foco em clareza técnica e princípios verificáveis." en="Cybersecurity and privacy research focused on technical clarity and verifiable principles." />
             </p>
             <div className="mt-6 flex items-center gap-2">
               <a

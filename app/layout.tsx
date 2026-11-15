@@ -38,7 +38,6 @@ export const metadata: Metadata = {
     "privacidade",
     "zero trust",
     "infrastructure",
-    "enterprise security",
   ],
   authors: [{ name: "xZark" }],
   creator: "xZark",
@@ -59,13 +58,13 @@ export const metadata: Metadata = {
     siteName: "xZark",
     title: "xZark — Cybersecurity & Privacy Infrastructure",
     description:
-      "Infraestrutura de cibersegurança e privacidade engenheirada para empresas modernas.",
+      "Pesquisa em cibersegurança e privacidade para sistemas digitais modernos.",
   },
   twitter: {
     card: "summary_large_image",
     title: "xZark — Cybersecurity & Privacy Infrastructure",
     description:
-      "Infraestrutura de cibersegurança e privacidade para empresas modernas.",
+      "Pesquisa em cibersegurança e privacidade para sistemas digitais modernos.",
   },
   // Robots — defensivo, sem indexar áreas sensíveis (configurado via robots.ts)
   robots: {
