@@ -37,8 +37,6 @@ export const metadata: Metadata = {
     "privacy",
     "privacidade",
     "zero trust",
-    "xAuth",
-    "xShield",
     "infrastructure",
     "enterprise security",
   ],

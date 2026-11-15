@@ -25,7 +25,7 @@ type Status = "idle" | "loading" | "unavailable"
 
 export function ContactForm() {
   const [status, setStatus] = useState<Status>("idle")
-  const [topic, setTopic] = useState<string>("commercial")
+  const [topic, setTopic] = useState<string>("other")
   const [issues, setIssues] = useState<FormIssue[]>([])
 
   function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
@@ -111,9 +111,7 @@ export function ContactForm() {
               <SelectValue placeholder="Selecione" />
             </SelectTrigger>
             <SelectContent>
-              <SelectItem value="commercial">Comercial / POC</SelectItem>
               <SelectItem value="security">Reporte de segurança</SelectItem>
-              <SelectItem value="support">Suporte técnico</SelectItem>
               <SelectItem value="press">Imprensa</SelectItem>
               <SelectItem value="career">Carreiras</SelectItem>
               <SelectItem value="other">Outro</SelectItem>

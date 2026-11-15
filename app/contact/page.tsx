@@ -4,34 +4,21 @@ import { Header } from "@/components/site/header"
 import { Footer } from "@/components/site/footer"
 import { PageHero } from "@/components/site/page-hero"
 import { ContactForm } from "@/components/contact/contact-form"
-import { Mail, MessageSquare, Phone, Shield } from "lucide-react"
+import { Mail, Shield } from "lucide-react"
+import { LocaleText } from "@/components/site/locale-text"
 
 export const metadata: Metadata = {
   title: "Contato",
   description:
-    "Fale com o time xZark. Comercial, suporte técnico, segurança ou imprensa — escolha o canal correto.",
+    "Entre em contato com a xZark para assuntos gerais, relatos de segurança, imprensa ou carreiras.",
 }
 
 const channels = [
-  {
-    icon: MessageSquare,
-    title: "Comercial",
-    description: "Avaliação técnica, POCs e contratação enterprise.",
-    contact: "sales@xzark.co",
-    responseTime: "Canal público",
-  },
   {
     icon: Shield,
     title: "Segurança",
     description: "Reporte de vulnerabilidades e bug bounty (PGP disponível).",
     contact: "security@xzark.co",
-    responseTime: "Canal público",
-  },
-  {
-    icon: Phone,
-    title: "Suporte técnico",
-    description: "Incidentes P1/P2 para clientes ativos com SLA enterprise.",
-    contact: "+55 11 4040-XZRK",
     responseTime: "Canal público",
   },
   {
@@ -51,13 +38,9 @@ export default function ContactPage() {
       <Header />
       <main>
         <PageHero
-          eyebrow="Contato"
-          title={
-            <>
-              Vamos <span className="font-serif italic text-primary">conversar</span>.
-            </>
-          }
-          description="Engenheiros falam com engenheiros. Sem SDR genérico, sem script — apenas pessoas que entendem o que você está construindo."
+          eyebrow={<LocaleText pt="Contato" en="Contact" />}
+          title={<LocaleText pt={<>Vamos <span className="font-serif italic text-primary">conversar</span>.</>} en={<>Let&apos;s <span className="font-serif italic text-primary">talk</span>.</>} />}
+          description={<LocaleText pt="Engenheiros falam com engenheiros. Sem SDR genérico, sem script — apenas pessoas que entendem o que você está construindo." en="Engineers talk to engineers. No generic SDRs, no scripts — just people who understand what you are building." />}
         />
 
         <section className="border-b border-border/60 bg-background py-20 md:py-28">

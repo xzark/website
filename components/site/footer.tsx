@@ -1,32 +1,14 @@
 /**
- * Footer corporativo — colunas com produtos, serviços, recursos e legal.
+ * Footer corporativo — links institucionais e legais.
  * Inspirado em Vercel/Stripe: tipografia clara, hierarquia óbvia.
  */
 import Link from "next/link"
 import { Logo } from "./logo"
-import { siteConfig, products } from "@/lib/site-config"
+import { siteConfig } from "@/lib/site-config"
 import { Github, Linkedin, Twitter } from "lucide-react"
 import { LocaleText } from "@/components/site/locale-text"
 
 const cols = [
-  {
-    title: "Produtos",
-    links: products.map((p) => ({
-      label: p.name,
-      href: `/products/${p.slug}`,
-    })),
-  },
-  {
-    title: "Serviços",
-    links: [
-      { label: "Security Audit", href: "/services#security-audit" },
-      { label: "Incident Response", href: "/services#incident-response" },
-      { label: "Compliance", href: "/services#compliance" },
-      { label: "Zero Trust", href: "/services#zero-trust" },
-      { label: "Threat Hunting", href: "/services#threat-hunting" },
-      { label: "Managed Security", href: "/services#managed-security" },
-    ],
-  },
   {
     title: "Empresa",
     links: [
@@ -34,7 +16,7 @@ const cols = [
       { label: "Segurança", href: "/security" },
       { label: "FAQ", href: "/faq" },
       { label: "Contato", href: "/contact" },
-      { label: "Careers — Join xZark", href: "/careers" },
+      { label: "Carreiras — Junte-se à xZark", href: "/careers" },
     ],
   },
   {
@@ -54,7 +36,7 @@ export function Footer() {
       <div className="pointer-events-none absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-primary/40 to-transparent" />
 
       <div className="mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:px-8">
-        <div className="grid grid-cols-2 gap-10 md:grid-cols-6">
+        <div className="grid grid-cols-2 gap-10 md:grid-cols-4">
           {/* Marca + descrição */}
           <div className="col-span-2">
             <Logo />
@@ -89,7 +71,7 @@ export function Footer() {
           {cols.map((col) => (
             <div key={col.title}>
               <h3 className="font-mono text-[10.5px] uppercase tracking-[0.2em] text-muted-foreground">
-                <LocaleText pt={col.title} en={({ Produtos: "Products", Serviços: "Services", Empresa: "Company", Legal: "Legal" } as Record<string, string>)[col.title] ?? col.title} />
+                <LocaleText pt={col.title} en={({ Empresa: "Company", Legal: "Legal" } as Record<string, string>)[col.title] ?? col.title} />
               </h3>
               <ul className="mt-4 space-y-2.5">
                 {col.links.map((l) => (
