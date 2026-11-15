@@ -4,35 +4,21 @@ import { Header } from "@/components/site/header"
 import { Footer } from "@/components/site/footer"
 import { PageHero } from "@/components/site/page-hero"
 import { ContactForm } from "@/components/contact/contact-form"
-import { Mail, MessageSquare, Phone, Shield } from "lucide-react"
+import { Mail, Shield } from "lucide-react"
 import { LocaleText } from "@/components/site/locale-text"
 
 export const metadata: Metadata = {
   title: "Contato",
   description:
-    "Fale com o time xZark. Comercial, suporte técnico, segurança ou imprensa — escolha o canal correto.",
+    "Entre em contato com a xZark para assuntos gerais, relatos de segurança, imprensa ou carreiras.",
 }
 
 const channels = [
-  {
-    icon: MessageSquare,
-    title: "Comercial",
-    description: "Avaliação técnica, POCs e contratação enterprise.",
-    contact: "sales@xzark.co",
-    responseTime: "Canal público",
-  },
   {
     icon: Shield,
     title: "Segurança",
     description: "Reporte de vulnerabilidades e bug bounty (PGP disponível).",
     contact: "security@xzark.co",
-    responseTime: "Canal público",
-  },
-  {
-    icon: Phone,
-    title: "Suporte técnico",
-    description: "Incidentes P1/P2 para clientes ativos com SLA enterprise.",
-    contact: "+55 11 4040-XZRK",
     responseTime: "Canal público",
   },
   {

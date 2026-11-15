@@ -78,7 +78,7 @@ export function Hero() {
           transition={{ duration: 0.6, delay: 0.2 }}
           className="mt-8 max-w-xl text-pretty text-base leading-relaxed text-muted-foreground md:text-lg"
         >
-          <LocaleText pt="A xZark ajuda organizações a fortalecer sua segurança digital com pesquisa, engenharia e serviços especializados em cibersegurança e privacidade." en="xZark helps organizations strengthen digital security through research, engineering, and specialized cybersecurity and privacy services." />
+          <LocaleText pt="A xZark explora ideias de cibersegurança e privacidade por meio de pesquisa técnica, engenharia e princípios de segurança por design." en="xZark explores cybersecurity and privacy through technical research, engineering, and secure-by-design principles." />
         </motion.p>
 
         {/* CTAs */}
