@@ -30,7 +30,7 @@ export function CTA() {
               className="h-11 rounded-md bg-foreground px-5 text-sm font-medium text-background hover:bg-foreground/90"
             >
               <Link href="/contact">
-                <LocaleText pt="Solicitar acesso" en="Request access" />
+                <LocaleText pt="Fale com a equipe" en="Contact our team" />
                 <ArrowUpRight className="ml-1 size-4" />
               </Link>
             </Button>

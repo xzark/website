@@ -5,8 +5,8 @@
  * grid futurista, preview de terminal e CTAs.
  * Inspirada na referência Jaguar·Glow (estética premium dark).
  */
-import Link from "next/link"
 import { motion } from "framer-motion"
+import Link from "next/link"
 import { ArrowUpRight } from "lucide-react"
 import { GridBackground } from "@/components/site/grid-background"
 import { LocaleText } from "@/components/site/locale-text"
@@ -78,7 +78,7 @@ export function Hero() {
           transition={{ duration: 0.6, delay: 0.2 }}
           className="mt-8 max-w-xl text-pretty text-base leading-relaxed text-muted-foreground md:text-lg"
         >
-          <LocaleText pt="xZark é a infraestrutura de cibersegurança e privacidade para empresas que tratam segurança como produto, não como custo. Identidade, proteção, criptografia e rede em uma única plataforma." en="xZark is cybersecurity and privacy infrastructure for companies that treat security as a product, not a cost. Identity, protection, cryptography, and network in one platform." />
+          <LocaleText pt="A xZark ajuda organizações a fortalecer sua segurança digital com pesquisa, engenharia e serviços especializados em cibersegurança e privacidade." en="xZark helps organizations strengthen digital security through research, engineering, and specialized cybersecurity and privacy services." />
         </motion.p>
 
         {/* CTAs */}
@@ -94,17 +94,9 @@ export function Hero() {
             className="h-11 rounded-md bg-foreground px-5 text-sm font-medium text-background hover:bg-foreground/90"
           >
             <Link href="/contact">
-              <LocaleText pt="Solicitar acesso" en="Request access" />
+              <LocaleText pt="Fale com a equipe" en="Contact our team" />
               <ArrowUpRight className="ml-1 size-4" />
             </Link>
-          </Button>
-          <Button
-            asChild
-            size="lg"
-            variant="ghost"
-            className="h-11 rounded-md border border-border/80 bg-transparent px-5 text-sm font-medium text-foreground hover:bg-accent/40"
-          >
-            <Link href="/products"><LocaleText pt="Explorar produtos" en="Explore products" /></Link>
           </Button>
         </motion.div>
 

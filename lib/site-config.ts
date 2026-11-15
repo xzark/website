@@ -1,5 +1,5 @@
 import type { LucideIcon } from "lucide-react"
-import { Activity, Fingerprint, Lock, Radar, Shield, ShieldCheck, Users, Zap } from "lucide-react"
+import { Activity, Lock, Radar, ShieldCheck, Users, Zap } from "lucide-react"
 
 export const siteConfig = {
   name: "xZark",
@@ -16,14 +16,6 @@ export const siteConfig = {
   defaultLocale: "pt-BR" as const,
 }
 
-export type ProductSlug = "xauth" | "xshield"
-export interface Product { slug: ProductSlug; name: string; category: string; tagline: string; description: string; icon: LucideIcon; features: string[]; status: "Preview" | "In development" }
-
-export const products: Product[] = [
-  { slug: "xauth", name: "xAuth", category: "Identidade e acesso", tagline: "Infraestrutura de identidade e acesso para aplicações modernas.", description: "Produto em desenvolvimento para explorar autenticação, identidade, controle de acesso e sessões orientadas a segurança.", icon: Fingerprint, features: ["Autenticação", "Identidade", "Controle de acesso", "Sessões", "Arquitetura segura", "Integrações modernas"], status: "Preview" },
-  { slug: "xshield", name: "xShield", category: "Segurança de aplicações", tagline: "Infraestrutura de segurança para proteger sistemas digitais modernos.", description: "Produto em desenvolvimento para explorar proteção de aplicações, políticas de segurança, análise de ameaças e superfícies digitais.", icon: Shield, features: ["Proteção de aplicações", "Análise de ameaças", "Políticas de segurança", "Monitoramento", "Superfícies digitais", "Arquitetura de segurança"], status: "In development" },
-]
-
 export interface Service { slug: string; title: string; description: string; icon: LucideIcon; deliverables: string[] }
 export const services: Service[] = [
   { slug: "security-audit", title: "Auditoria de segurança", description: "Avaliação técnica de postura de segurança, código, infraestrutura e processos.", icon: ShieldCheck, deliverables: ["Avaliação técnica", "Análise de controles", "Relatório executivo", "Plano de melhorias"] },
@@ -35,8 +27,6 @@ export const services: Service[] = [
 ]
 
 export const mainNav = [
-  { label: "Produtos", href: "/products" },
-  { label: "Planos xAuth", href: "/products/xauth/pricing" },
   { label: "Serviços", href: "/services" },
   { label: "Segurança", href: "/security" },
   { label: "Sobre", href: "/about" },
@@ -44,5 +34,4 @@ export const mainNav = [
 ] as const
 
 export const announcements = ["INFRAESTRUTURA DE SEGURANÇA — CONCEITOS E PESQUISA", "PRIVACIDADE E SEGURANÇA POR DESIGN", "ARQUITETURA ZERO-TRUST — EM EVOLUÇÃO CONTÍNUA"] as const
-export const productSlugs = products.map((product) => product.slug)
 export const businessAddress = siteConfig.businessAddress

@@ -4,18 +4,11 @@
  */
 import Link from "next/link"
 import { Logo } from "./logo"
-import { siteConfig, products } from "@/lib/site-config"
+import { siteConfig } from "@/lib/site-config"
 import { Github, Linkedin, Twitter } from "lucide-react"
 import { LocaleText } from "@/components/site/locale-text"
 
 const cols = [
-  {
-    title: "Produtos",
-    links: products.map((p) => ({
-      label: p.name,
-      href: `/products/${p.slug}`,
-    })),
-  },
   {
     title: "Serviços",
     links: [
