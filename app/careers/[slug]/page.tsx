@@ -1,0 +1,14 @@
+import Link from "next/link"
+import { notFound } from "next/navigation"
+import { ArrowLeft, ArrowUpRight } from "lucide-react"
+import { Button } from "@/components/ui/button"
+import { createClient } from "@/lib/supabase/server"
+
+export default async function JobPage({ params }: { params: Promise<{ slug: string }> }) {
+  const { slug } = await params
+  const supabase = await createClient()
+  const { data: job } = await supabase.from("jobs").select("*").eq("slug", slug).maybeSingle()
+  if (!job) notFound()
+  const lists: [string, string[]][] = [["Responsabilidades", job.responsibilities], ["Requisitos obrigatórios", job.requirements], ["Diferenciais", job.nice_to_have], ["Benefícios", job.benefits], ["Processo seletivo", job.process]]
+  return <main className="mx-auto max-w-5xl px-4 py-14 sm:px-6 lg:px-8"><Link href="/careers" className="inline-flex items-center gap-2 text-sm text-muted-foreground hover:text-foreground"><ArrowLeft className="size-4"/>Todas as vagas</Link><header className="mt-10 border-b border-border/70 pb-8"><p className="font-mono text-[10px] uppercase tracking-[0.2em] text-primary">{job.department} · {job.seniority}</p><h1 className="mt-4 text-4xl font-light tracking-tight md:text-5xl">{job.title}</h1><p className="mt-4 max-w-3xl text-base leading-relaxed text-muted-foreground">{job.description}</p><div className="mt-6 flex flex-wrap gap-2 font-mono text-[10px] uppercase tracking-[0.12em] text-muted-foreground">{[job.location,job.work_model,job.employment_type].map((item)=><span key={item} className="border border-border px-2 py-1">{item}</span>)}<span className={`border px-2 py-1 ${job.status === "open"?"border-primary/50 text-primary":"border-border"}`}>{job.status === "open" ? "Aberta" : "Encerrada"}</span>{job.published_at&&<span className="border border-border px-2 py-1">Publicada em {new Date(job.published_at).toLocaleDateString("pt-BR")}</span>}</div>{job.status === "open"?<Button asChild className="mt-7"><Link href={`/careers/${job.slug}/apply`}>Apply for this position <ArrowUpRight className="ml-2 size-4"/></Link></Button>:<p className="mt-7 border border-border bg-card/40 p-4 text-sm text-muted-foreground">Esta oportunidade foi encerrada e não está recebendo novas candidaturas.</p>}</header><div className="grid gap-10 py-10 md:grid-cols-2"><section><h2 className="font-mono text-xs uppercase tracking-[0.18em] text-primary">Sobre a posição</h2><p className="mt-4 whitespace-pre-line text-sm leading-relaxed text-muted-foreground">{job.description}</p></section>{lists.map(([title,items])=>items?.length>0&&<section key={title}><h2 className="font-mono text-xs uppercase tracking-[0.18em] text-primary">{title}</h2><ul className="mt-4 flex flex-col gap-3">{items.map((item:string)=><li key={item} className="flex gap-3 text-sm leading-relaxed text-muted-foreground"><span className="mt-2 size-1 shrink-0 rounded-full bg-primary"/>{item}</li>)}</ul></section>)}</div></main>
+}
