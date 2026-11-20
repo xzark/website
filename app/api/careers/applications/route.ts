@@ -30,7 +30,7 @@ export async function POST(request: NextRequest) {
   if (!jobId || Object.values(fields).some((value) => !value) || form.get("consent") !== "true" || !validUrl(fields.p_linkedin) || !validUrl(fields.p_github) || !validUrl(fields.p_portfolio)) {
     return NextResponse.json({ error: "Revise os campos obrigatórios e os links informados." }, { status: 422 })
   }
-  const ip = request.headers.get("x-forwarded-for")?.split(",")[0]?.trim() ?? "unknown"
+  const ip = request.headers.get("x-real-ip") ?? request.headers.get("x-forwarded-for")?.split(",").pop()?.trim() ?? "unknown"
   const fingerprint = createHash("sha256").update(`${ip}:${process.env.SUPABASE_JWT_SECRET ?? "careers"}`).digest("hex")
   const supabase = createServiceClient()
   const { data: allowed, error: limitError } = await supabase.rpc("consume_careers_submission_limit", { p_fingerprint: fingerprint })
@@ -44,7 +44,7 @@ export async function POST(request: NextRequest) {
   if (error || !data?.[0]) {
     await supabase.storage.from("careers-private").remove([path])
     const duplicate = error?.code === "23505"
-    return NextResponse.json({ error: duplicate ? "Já existe uma candidatura com este e-mail para esta vaga." : "Não foi possível registrar a candidatura." }, { status: duplicate ? 409 : 400 })
+    return NextResponse.json({ error: duplicate ? "Não foi possível registrar esta candidatura. Caso já tenha se candidatado a esta vaga, não é necessário enviar novamente." : "Não foi possível registrar a candidatura." }, { status: duplicate ? 409 : 400 })
   }
   return NextResponse.json({ protocol: data[0].protocol, createdAt: data[0].created_at, jobId }, { status: 201 })
 }

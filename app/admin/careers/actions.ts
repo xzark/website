@@ -42,6 +42,8 @@ export async function saveJobAction(formData: FormData) {
   const slug = String(formData.get("slug") ?? "").trim().toLowerCase()
   const status = String(formData.get("status") ?? "draft")
   if (!title || !/^[a-z0-9]+(?:-[a-z0-9]+)*$/.test(slug) || !["draft", "open", "paused", "closed"].includes(status)) return
+  const id = String(formData.get("id") ?? "")
+  const { data: existing } = id ? await supabase.from("jobs").select("status,published_at,closed_at").eq("id", id).maybeSingle() : { data: null }
   const payload = {
     title, slug, department: String(formData.get("department") ?? "").trim(),
     location: String(formData.get("location") ?? "").trim(),
@@ -50,12 +52,40 @@ export async function saveJobAction(formData: FormData) {
     seniority: String(formData.get("seniority") ?? "Mid-level"),
     summary: String(formData.get("summary") ?? "").trim(), description: String(formData.get("description") ?? "").trim(),
     responsibilities: asList("responsibilities"), requirements: asList("requirements"), nice_to_have: asList("nice_to_have"), benefits: asList("benefits"), process: asList("process"), status,
-    published_at: status === "open" ? new Date().toISOString() : null,
-    closed_at: status === "closed" ? new Date().toISOString() : null,
+    published_at: status === "open" ? (existing?.status === "open" ? existing.published_at : new Date().toISOString()) : existing?.published_at ?? null,
+    closed_at: status === "closed" ? (existing?.status === "closed" ? existing.closed_at : new Date().toISOString()) : null,
   }
-  const id = String(formData.get("id") ?? "")
   if (id) await supabase.from("jobs").update(payload).eq("id", id)
   else await supabase.from("jobs").insert(payload)
+  revalidatePath("/careers")
+  revalidatePath("/admin/careers")
+}
+
+export async function setJobStatusAction(formData: FormData) {
+  const supabase = await requireAdmin()
+  const id = String(formData.get("id") ?? "")
+  const status = String(formData.get("status") ?? "")
+  if (!id || !["open", "paused", "closed"].includes(status)) return
+  const { data: current } = await supabase.from("jobs").select("status,published_at,closed_at").eq("id", id).maybeSingle()
+  if (!current) return
+  const { error } = await supabase.from("jobs").update({
+    status,
+    published_at: status === "open" ? (current.status === "open" ? current.published_at : new Date().toISOString()) : current.published_at,
+    closed_at: status === "closed" ? (current.status === "closed" ? current.closed_at : new Date().toISOString()) : null,
+  }).eq("id", id)
+  if (error) throw new Error("Não foi possível atualizar a oportunidade.")
+  revalidatePath("/careers")
+  revalidatePath("/admin/careers")
+}
+
+export async function deleteJobAction(formData: FormData) {
+  const supabase = await requireAdmin()
+  const id = String(formData.get("id") ?? "")
+  if (!id) return
+  const { count } = await supabase.from("applications").select("id", { count: "exact", head: true }).eq("job_id", id)
+  if ((count ?? 0) > 0) throw new Error("Não é possível excluir uma vaga com candidaturas. Encerre-a para preservar o histórico.")
+  const { error } = await supabase.from("jobs").delete().eq("id", id)
+  if (error) throw new Error("Não foi possível excluir a oportunidade.")
   revalidatePath("/careers")
   revalidatePath("/admin/careers")
 }
