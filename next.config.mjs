@@ -18,7 +18,7 @@ const ContentSecurityPolicy = [
   "style-src 'self' 'unsafe-inline'",
   "img-src 'self' data: blob: https:",
   "font-src 'self' data:",
-  "connect-src 'self' https://*.xzark.co https://va.vercel-scripts.com",
+  "connect-src 'self' https://*.xzark.co https://*.supabase.co https://va.vercel-scripts.com",
   "frame-ancestors 'none'",
   "form-action 'self'",
   "base-uri 'self'",

@@ -10,6 +10,11 @@ const validUrl = (value: string) => !value || (value.length <= 500 && /^https:\/
 export async function POST(request: NextRequest) {
   const length = Number(request.headers.get("content-length") ?? 0)
   if (length > MAX_FILE_BYTES + 100_000) return NextResponse.json({ error: "O currículo excede o limite de 10 MB." }, { status: 413 })
+  const ip = request.headers.get("x-real-ip") ?? request.headers.get("x-forwarded-for")?.split(",").pop()?.trim() ?? "unknown"
+  const fingerprint = createHash("sha256").update(`${ip}:${process.env.SUPABASE_JWT_SECRET ?? "careers"}`).digest("hex")
+  const supabase = createServiceClient()
+  const { data: allowed, error: limitError } = await supabase.rpc("consume_careers_submission_limit", { p_fingerprint: fingerprint })
+  if (limitError || !allowed) return NextResponse.json({ error: "Muitas tentativas. Tente novamente mais tarde." }, { status: 429 })
   const form = await request.formData()
   if (text(form, "website", 200)) return NextResponse.json({ error: "Não foi possível processar a candidatura." }, { status: 400 })
   const file = form.get("cv")
@@ -30,11 +35,6 @@ export async function POST(request: NextRequest) {
   if (!jobId || Object.values(fields).some((value) => !value) || form.get("consent") !== "true" || !validUrl(fields.p_linkedin) || !validUrl(fields.p_github) || !validUrl(fields.p_portfolio)) {
     return NextResponse.json({ error: "Revise os campos obrigatórios e os links informados." }, { status: 422 })
   }
-  const ip = request.headers.get("x-real-ip") ?? request.headers.get("x-forwarded-for")?.split(",").pop()?.trim() ?? "unknown"
-  const fingerprint = createHash("sha256").update(`${ip}:${process.env.SUPABASE_JWT_SECRET ?? "careers"}`).digest("hex")
-  const supabase = createServiceClient()
-  const { data: allowed, error: limitError } = await supabase.rpc("consume_careers_submission_limit", { p_fingerprint: fingerprint })
-  if (limitError || !allowed) return NextResponse.json({ error: "Muitas tentativas. Tente novamente mais tarde." }, { status: 429 })
   const path = `incoming/${randomUUID()}.pdf`
   const { error: uploadError } = await supabase.storage.from("careers-private").upload(path, bytes, { contentType: "application/pdf", upsert: false })
   if (uploadError) return NextResponse.json({ error: "Não foi possível armazenar o currículo. Tente novamente." }, { status: 503 })

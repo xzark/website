@@ -1,8 +1,11 @@
 import { redirect } from "next/navigation"
+import type { Metadata } from "next"
 import { createClient } from "@/lib/supabase/server"
 import { signInAction } from "@/app/admin/careers/actions"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
+
+export const metadata: Metadata = { title: "Acesso Careers", robots: { index: false, follow: false } }
 
 export default async function CareersLogin({ searchParams }: { searchParams: Promise<{ error?: string }> }) {
   const supabase = await createClient()
