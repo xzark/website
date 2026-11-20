@@ -11,7 +11,7 @@ import { PageHero } from "@/components/site/page-hero"
 export interface LegalSection {
   id: string
   title: string
-  content: React.ReactNode
+  content: string
 }
 
 interface LegalPageProps {
@@ -20,6 +20,7 @@ interface LegalPageProps {
   description: string
   lastUpdated: string
   sections: LegalSection[]
+  preferences?: React.ReactNode
 }
 
 export function LegalPage({
@@ -28,63 +29,80 @@ export function LegalPage({
   description,
   lastUpdated,
   sections,
+  preferences,
 }: LegalPageProps) {
+  const contents = sections.map((section, index) => (
+    <Link
+      key={section.id}
+      href={`#${section.id}`}
+      className="block text-sm text-foreground/80 transition-colors hover:text-primary focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary"
+    >
+      <span className="mr-2 font-mono text-[10.5px] text-muted-foreground">
+        {(index + 1).toString().padStart(2, "0")}
+      </span>
+      {section.title}
+    </Link>
+  ))
+
   return (
     <>
       <AnnouncementBar />
       <Header />
-      <main>
+      <main lang="en" id="top">
         <PageHero
           eyebrow={eyebrow}
           title={title}
           description={description}
-          meta={[{ label: "Última atualização", value: lastUpdated }]}
+          meta={[{ label: "Last updated", value: lastUpdated }]}
         />
 
-        <section className="border-b border-border/60 bg-background py-16 md:py-20">
+        <section className="border-b border-border/60 bg-background py-12 md:py-20">
           <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-            <div className="grid gap-12 md:grid-cols-12">
-              {/* TOC */}
+            <div className="grid gap-8 md:grid-cols-12 md:gap-12">
               <aside className="md:col-span-3">
-                <div className="sticky top-24">
-                  <p className="font-mono text-[10.5px] uppercase tracking-[0.2em] text-muted-foreground">
-                    Sumário
-                  </p>
-                  <nav className="mt-4 space-y-1.5">
-                    {sections.map((s, i) => (
-                      <Link
-                        key={s.id}
-                        href={`#${s.id}`}
-                        className="block text-sm text-foreground/80 transition-colors hover:text-primary"
-                      >
-                        <span className="mr-2 font-mono text-[10.5px] text-muted-foreground">
-                          {(i + 1).toString().padStart(2, "0")}
-                        </span>
-                        {s.title}
-                      </Link>
-                    ))}
+                <details className="border border-border/70 p-4 md:hidden">
+                  <summary className="cursor-pointer font-mono text-[10.5px] uppercase tracking-[0.2em] text-muted-foreground focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-primary">
+                    Table of contents
+                  </summary>
+                  <nav aria-label="Table of contents" className="mt-4 flex flex-col gap-3">
+                    {contents}
                   </nav>
+                </details>
+                <div className="sticky top-24 hidden max-h-[calc(100vh-6rem)] overflow-y-auto pr-2 md:block">
+                  <p className="font-mono text-[10.5px] uppercase tracking-[0.2em] text-muted-foreground">Table of contents</p>
+                  <nav aria-label="Table of contents" className="mt-4 flex flex-col gap-2">{contents}</nav>
                 </div>
               </aside>
 
-              {/* Content */}
-              <div className="md:col-span-9">
-                <article className="prose prose-invert max-w-none">
-                  {sections.map((s, i) => (
-                    <section key={s.id} id={s.id} className="mb-14 scroll-mt-24">
+              <article className="min-w-0 md:col-span-9">
+                <div className="max-w-3xl">
+                  {sections.map((section, index) => (
+                    <section key={section.id} id={section.id} className="mb-12 scroll-mt-24 md:mb-14">
                       <p className="font-mono text-[10.5px] uppercase tracking-[0.2em] text-primary">
-                        {(i + 1).toString().padStart(2, "0")} — Seção
+                        {(index + 1).toString().padStart(2, "0")} — Section
                       </p>
-                      <h2 className="mt-2 text-2xl font-medium tracking-tight text-foreground md:text-3xl">
-                        {s.title}
-                      </h2>
-                      <div className="mt-5 space-y-4 text-sm leading-relaxed text-foreground/85 md:text-base">
-                        {s.content}
+                      <h2 className="mt-2 text-2xl font-medium tracking-tight text-foreground md:text-3xl">{section.title}</h2>
+                      <div className="mt-5 flex flex-col gap-4 text-sm leading-relaxed text-foreground/85 md:text-base">
+                        {section.content.split(/\n\n+/).map((paragraph, paragraphIndex) => <p key={paragraphIndex}>{paragraph}</p>)}
                       </div>
+                      {preferences && section.id === "management" && <div id="manage-preferences" className="mt-8 scroll-mt-24">{preferences}</div>}
                     </section>
                   ))}
-                </article>
-              </div>
+
+                  <nav aria-label="Related legal documents" className="border-t border-border/70 py-6">
+                    <p className="font-mono text-[10.5px] uppercase tracking-[0.2em] text-muted-foreground">Related documents</p>
+                    <div className="mt-4 flex flex-wrap gap-x-6 gap-y-3 text-sm">
+                      <Link className="underline underline-offset-4 hover:text-primary" href="/faq">FAQ</Link>
+                      <Link className="underline underline-offset-4 hover:text-primary" href="/terms">Terms of Service</Link>
+                      <Link className="underline underline-offset-4 hover:text-primary" href="/privacy">Privacy Policy</Link>
+                      <Link className="underline underline-offset-4 hover:text-primary" href="/cookies">Cookie Policy</Link>
+                    </div>
+                  </nav>
+                  <div className="flex justify-end pb-4">
+                    <Link href="#top" className="text-sm text-muted-foreground underline underline-offset-4 transition-colors hover:text-primary">Back to top</Link>
+                  </div>
+                </div>
+              </article>
             </div>
           </div>
         </section>

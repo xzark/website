@@ -1,6 +1,6 @@
 import type { Metadata, Viewport } from "next"
 import { Geist, Geist_Mono, Instrument_Serif } from "next/font/google"
-import { Analytics } from "@vercel/analytics/next"
+import { CookieAnalytics, CookieConsentBanner } from "@/components/legal/cookie-consent"
 import "./globals.css"
 
 // Fontes — Geist Sans (UI), Geist Mono (código/acentos), Instrument Serif (acentos editoriais)
@@ -38,7 +38,6 @@ export const metadata: Metadata = {
     "privacidade",
     "zero trust",
     "infrastructure",
-    "enterprise security",
   ],
   authors: [{ name: "xZark" }],
   creator: "xZark",
@@ -59,13 +58,13 @@ export const metadata: Metadata = {
     siteName: "xZark",
     title: "xZark — Cybersecurity & Privacy Infrastructure",
     description:
-      "Infraestrutura de cibersegurança e privacidade engenheirada para empresas modernas.",
+      "Pesquisa em cibersegurança e privacidade para sistemas digitais modernos.",
   },
   twitter: {
     card: "summary_large_image",
     title: "xZark — Cybersecurity & Privacy Infrastructure",
     description:
-      "Infraestrutura de cibersegurança e privacidade para empresas modernas.",
+      "Pesquisa em cibersegurança e privacidade para sistemas digitais modernos.",
   },
   // Robots — defensivo, sem indexar áreas sensíveis (configurado via robots.ts)
   robots: {
@@ -114,7 +113,8 @@ export default function RootLayout({
     >
       <body className="font-sans antialiased min-h-screen bg-background text-foreground selection:bg-primary/30">
         {children}
-        {process.env.NODE_ENV === "production" && <Analytics />}
+        <CookieConsentBanner />
+        <CookieAnalytics />
       </body>
     </html>
   )

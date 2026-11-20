@@ -14,17 +14,18 @@ const cols = [
     links: [
       { label: "Sobre", href: "/about" },
       { label: "Segurança", href: "/security" },
-      { label: "FAQ", href: "/faq" },
       { label: "Contato", href: "/contact" },
       { label: "Carreiras — Junte-se à xZark", href: "/careers" },
     ],
   },
   {
-    title: "Legal",
+    title: "LEGAL & TRUST",
     links: [
-      { label: "Termos de Uso", href: "/terms" },
-      { label: "Política de Privacidade", href: "/privacy" },
-      { label: "Política de Cookies", href: "/cookies" },
+      { label: "FAQ", href: "/faq" },
+      { label: "Terms of Service", href: "/terms" },
+      { label: "Privacy Policy", href: "/privacy" },
+      { label: "Cookie Policy", href: "/cookies" },
+      { label: "Manage cookie preferences", href: "/cookies#manage-preferences" },
     ],
   },
 ]
@@ -41,7 +42,7 @@ export function Footer() {
           <div className="col-span-2">
             <Logo />
             <p className="mt-4 max-w-xs text-sm leading-relaxed text-muted-foreground">
-              <LocaleText pt="Infraestrutura de cibersegurança e privacidade engenheirada para empresas que não toleram falhas." en="Engineered cybersecurity and privacy infrastructure for companies that do not tolerate failure." />
+              <LocaleText pt="Pesquisa em cibersegurança e privacidade, com foco em clareza técnica e princípios verificáveis." en="Cybersecurity and privacy research focused on technical clarity and verifiable principles." />
             </p>
             <div className="mt-6 flex items-center gap-2">
               <a
@@ -71,7 +72,7 @@ export function Footer() {
           {cols.map((col) => (
             <div key={col.title}>
               <h3 className="font-mono text-[10.5px] uppercase tracking-[0.2em] text-muted-foreground">
-                <LocaleText pt={col.title} en={({ Empresa: "Company", Legal: "Legal" } as Record<string, string>)[col.title] ?? col.title} />
+                <LocaleText pt={col.title} en={({ Empresa: "Company" } as Record<string, string>)[col.title] ?? col.title} />
               </h3>
               <ul className="mt-4 space-y-2.5">
                 {col.links.map((l) => (

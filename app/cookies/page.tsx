@@ -1,11 +1,14 @@
 import type { Metadata } from "next"
-import { LegalPage, type LegalSection } from "@/components/legal/legal-page"
+import { LegalPage } from "@/components/legal/legal-page"
+import { CookiePreferencesManager } from "@/components/legal/cookie-consent"
+import { cookieSections } from "@/lib/legal-content"
+import { legalMetadata, legalPublicationConfig } from "@/lib/legal-config"
 
-export const metadata: Metadata = { title: "Política de Cookies", description: "Uso de cookies no site público xZark." }
-const sections: LegalSection[] = [
-  { id: "what", title: "O que são cookies", content: <p>Cookies são pequenos arquivos armazenados pelo navegador para lembrar preferências e apoiar o funcionamento de um site.</p> },
-  { id: "use", title: "Uso no site", content: <p>O site público pode utilizar recursos estritamente necessários ao funcionamento da navegação. Não descrevemos aqui cookies de autenticação, pois não existe área de login ou conta.</p> },
-  { id: "control", title: "Controle", content: <p>Você pode bloquear ou remover cookies nas configurações do navegador. Algumas preferências de navegação podem deixar de funcionar.</p> },
-  { id: "contact", title: "Dúvidas", content: <p>Para questões sobre esta política, utilize a página de contato.</p> },
-]
-export default function CookiesPage() { return <LegalPage eyebrow="Documento legal" title={<>Política de <span className="font-serif italic text-primary">Cookies</span>.</>} description="Uso de cookies no site público xZark." lastUpdated="[DATA DE ATUALIZAÇÃO]" sections={sections} /> }
+const description = "Learn which cookies and similar technologies the xZark website uses and manage your privacy preferences."
+
+export const metadata: Metadata = legalMetadata({ title: "Cookie Policy", description, path: "/cookies" })
+
+export default function CookiesPage() {
+  const lastUpdated = new Date(`${legalPublicationConfig.lastUpdated}T12:00:00Z`).toLocaleDateString("en-US", { dateStyle: "long", timeZone: "UTC" })
+  return <LegalPage eyebrow="Legal document" title="Cookie Policy" description={description} lastUpdated={lastUpdated} sections={cookieSections} preferences={<CookiePreferencesManager />} />
+}
